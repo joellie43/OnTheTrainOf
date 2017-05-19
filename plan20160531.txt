@@ -5,5 +5,36 @@ Joelle Lum
 
 Diner Dash
 ~Action~
-
+have the waiter, customer, and table classes written
+the waiter and customer classes should remain basic for now, just to implement basic gameplay
+generate user responses, such as being able to drag customers to tables and clicking to tell the waiter where to move
 ~Due~
+Sunday, May 21
+
+~Action
+have all of the other classes besides level (check, food, chef) written
+fully implement the waiter and customer classes, now that the other classes are written
+~Due~
+Tuesday, May 23
+
+~Action~
+priority queue that assists users by keeping track of the order in which customers are seated should be created
+priority qeue that helps the chef to keep track of the order in which food is ordered
+~Due
+Thursday, May 25
+
+~Action~
+learning about how processing keeps track of time
+creating the "undo" button, which is done by maintaining a stack composed of timestamps and actions
+~Due~
+Sunday, May 28
+
+~Action~
+implementing a start menu, the level class, and tying the foundation of the game using DLLNodes
+~Due~
+Wednesday, May 31
+
+~Action~
+bug fixes, testing, 
+(if time permits)
+replacing standard shapes with actual images
