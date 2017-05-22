@@ -7,6 +7,10 @@ class Waiter{
     x = 10;
     y = 10;
   }
+  
+  void display(){
+    
+  }
   void move(int xcor, int ycor){
     x = xcor;
     y = ycor;
