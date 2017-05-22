@@ -12,11 +12,13 @@ class Table{
     float g = random(256);
     float b = random(256);
     shade = color(r,g,b);
+    x =xcor;
+    y= ycor;
     numSeats = seats;
   }
   
   void display(){
-    rect(30, 20, 55, 55, 7);
+    rect(x, y, 55, 55, 7);
     fill(shade);
   }
 }
