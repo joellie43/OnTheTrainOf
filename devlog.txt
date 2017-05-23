@@ -44,3 +44,8 @@ LESSONS LEARNED
 Joelle :: Started writing the basic code for the classes
 Nikita :: Worked on getting Table to display properly
 ==============================================================
+
+2017-5-22
+--------------------------------------------------------------
+Joelle :: found open source code for waiter's star shape and implemented it
+==============================================================
