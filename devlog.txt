@@ -39,7 +39,8 @@ LESSONS LEARNED
 ==============================================================
 
 
-2017- - 
+2017-5-21 
 --------------------------------------------------------------
-::
+Joelle :: Started writing the basic code for the classes
+Nikita :: Worked on getting Table to display properly
 ==============================================================
