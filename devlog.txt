@@ -48,4 +48,5 @@ Nikita :: Worked on getting Table to display properly
 2017-5-22
 --------------------------------------------------------------
 Joelle :: found open source code for waiter's star shape and implemented it
+Dimitriy :: implemented a humanoid shape for the method and began a method allowing the waiter to move according to clicks
 ==============================================================
