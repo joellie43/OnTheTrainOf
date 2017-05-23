@@ -17,4 +17,6 @@ void draw() {
   for (Table t : tables){
     t.display();}
     flo.display();
+    //just moves flo down the screen
+    flo.move(flo.x+1, flo.y+1);
 }
