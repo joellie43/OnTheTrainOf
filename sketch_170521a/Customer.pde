@@ -17,14 +17,15 @@ class Customer{
     //make some indicator pop up
   }
   
-  /*Food order(){
+  Food order(){
     return menu.get(random(menu.size());
-  }*/
+  }
   
   void askToPay(){
     //make some indicator pop up
   }
   
+
   //walk towards exit and disappears
   void leave(){
   }
