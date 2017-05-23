@@ -1,5 +1,6 @@
 Table[] tables;
 Waiter flo;
+ArrayList foods()
 
 void setup() {
   size(640, 360);
@@ -9,7 +10,6 @@ void setup() {
   tables[2] = new Table(4,250,250);
   tables[3] = new Table(4,510,100);
   flo = new Waiter();
-  
 }
 
 void draw() {
