@@ -4,7 +4,7 @@ class Table{
   int x,y;
   color shade;
   int numSeats;
-  //ArrayList<Customer> customers;
+  ArrayList<Customer> customers;
   
   
   Table(int seats, int xcor, int ycor){
@@ -20,5 +20,10 @@ class Table{
   void display(){
     rect(x, y, 55, 55, 7);
     fill(shade);
+    /*
+    if (customers.size() != 0){
+    }*/
   }
+  
+  
 }
