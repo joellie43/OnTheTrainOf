@@ -7,17 +7,18 @@ Diner Dash
 ~Action~
 have the waiter, customer, and table classes written
 the waiter and customer classes should remain basic for now, just to implement basic gameplay
-generate user responses, such as being able to drag customers to tables and clicking to tell the waiter where to move
 ~Due~
 Sunday, May 21
 
 ~Action
 have all of the other classes besides level (check, food, chef) written
+generate user responses, such as being able to drag customers to tables and clicking to tell the waiter where to move
 fully implement the waiter and customer classes, now that the other classes are written
 ~Due~
 Tuesday, May 23
 
 ~Action~
+have a naviagtion mechanism to go around tables in the way and not through them
 priority queue that assists users by keeping track of the order in which customers are seated should be created
 priority qeue that helps the chef to keep track of the order in which food is ordered
 ~Due
