@@ -1,13 +1,18 @@
 class Waiter{
   int x,y;
+  int dx,dy;
   color shade; 
   Check order;
   Food inHands;
   int madeSoFar;
+  int state;
   Waiter(){
     x = 45;
     y = 45;
     shade = color(255, 204, 0);
+    state = 0; //default
+    dx = 1;
+    dy = 1;
   }
   
   void display(){
@@ -66,8 +71,18 @@ class Waiter{
 
 
   void move(int xcor, int ycor){
-    x = xcor;
-    y = ycor;
+      x = xcor;
+      y = ycor;
+  }
+  
+  void click(){
+    if(mousePressed){
+       while((pmouseX != x) && (pmouseY != y)){
+          dy = (pmouseY - y)/360;
+          dx = (pmouseX - x)/640;
+          state = 1; //following state
+       }
+    }
   }
   
   void pickUpFood(Food foo){

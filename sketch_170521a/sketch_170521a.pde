@@ -18,5 +18,7 @@ void draw() {
     t.display();}
     flo.display();
     //just moves flo down the screen
-    flo.move(flo.x+1, flo.y+1);
+    //flo.move(flo.x+1, flo.y+1);
+    flo.click();
+       flo.move(flo.x+flo.dx, flo.y+flo.dy); 
 }
