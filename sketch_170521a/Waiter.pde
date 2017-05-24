@@ -1,6 +1,5 @@
 class Waiter{
   int x,y;
-  int dx,dy;
   color shade; 
   Check order;
   Food inHands;
@@ -8,6 +7,7 @@ class Waiter{
   int state;
   int targetX;
   int targetY;
+  float dx, dy;
   Waiter(){
     x = 45;
     y = 45;
@@ -59,8 +59,8 @@ class Waiter{
   void move(){
       if(targetX != -1 && targetY != -1){
         float D = dist(x,y,targetX,targetY);
-        float dx = 10*(targetX-x)/D;
-        float dy = 10*(targetY-y)/D;
+        dx = 10*(targetX-x)/D;
+        dy = 10*(targetY-y)/D;
         if(D > 55){//continue moving towards target
           x += dx;
           y += dy;
@@ -69,7 +69,9 @@ class Waiter{
       }
   }
   
+  void rotate(){
   
+  }
   void pickUpFood(Food foo){
     inHands = foo;
   }
