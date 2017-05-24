@@ -54,18 +54,25 @@ void draw() {
      
 
   }
-  //flo's movement
+  //****FLO'S CODE****
   flo.display();
   for(Table t: tables){
+    //user clicks on table
     if(mousePressed && !disableFlo && dist(mouseX,mouseY,t.x,t.y) < 55){
       flo.targetX = t.x;
       flo.targetY = t.y;
     }
+    //flo is going to bumb into a table that's not a target
+    if(t.x != flo.targetX && t.y != flo.targetY && dist(flo.x+flo.dx,flo.y+flo.dy,t.x,t.y) < 55){
+      flo.rotate();
+    }
   }
-  if(mousePressed&& !disableFlo && dist(mouseX,mouseY,300,40) < 40){//if user clicks food station
+  //user clicks food station
+  if(mousePressed&& !disableFlo && dist(mouseX,mouseY,300,40) < 40){
     flo.targetX = 300;
     flo.targetY = 40;
   }
+  //*****************
   
       for (Customer c : customers){
       // Test if the cursor is over the customer 
