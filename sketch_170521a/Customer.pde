@@ -13,27 +13,27 @@ class Customer{
     id = ID; 
     partyOf = num;
     timerSec = sec;
-    x = 10;
-    y = 10;
     shade = color(170, 220, 60);
+    x = 20;
+    y = 20;
   }
   
-  void display(){
+  void display(int x, int y){
     PShape customer, c1, c2, c3, c4;
     
     //waiter shape group
     customer = createShape(GROUP);
     
     //making all the appendages
-    c1 = createShape(TRIANGLE, 25, 35, 75, 35, 50,10);
+    c1 = createShape(TRIANGLE, x, y, x+50, y, x+25,y-25);
     c1.setFill(color(shade));
-    c2 = createShape(TRIANGLE, 75, 35, 125, 35, 100, 10);
+    c2 = createShape(TRIANGLE, x+50, y, x+100, y, x+75, y-25);
     c2.setFill(color(shade));
 
-    c3 = createShape(TRIANGLE, 25, 60, 75, 60, 50, 40);
+    c3 = createShape(TRIANGLE, x, y+25, x+50, y+25, x+25, y+5);
     c3.setFill(color(shade));
     
-    c4 = createShape(TRIANGLE, 75, 60, 125, 60, 100, 40);
+    c4 = createShape(TRIANGLE, x+50, y+25, x+100, y+25, x+75, y+5);
     c4.setFill(color(shade));
     
     //put it all together
