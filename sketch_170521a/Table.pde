@@ -5,6 +5,7 @@ class Table{
   color shade;
   int numSeats;
   ArrayList<Customer> customers;
+  boolean capacity, served;
   
   
   Table(int seats, int xcor, int ycor){
@@ -15,6 +16,8 @@ class Table{
     x =xcor;
     y= ycor;
     numSeats = seats;
+    capacity = false;
+    served = false;
   }
   
   void display(){

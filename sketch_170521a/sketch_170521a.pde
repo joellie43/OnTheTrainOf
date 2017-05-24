@@ -25,6 +25,23 @@ void setup() {
   customers.add(new Customer("businessman",1,4,10));
   cx = width/2;
   cy = height/2;
+  
+  foods = new ArrayList<Food>();
+  for(int i = 0; i < 8; i++){
+    String fDesc;
+    int descNum = (int)random(3);
+    if(descNum == 0){
+       fDesc = "Sausage";
+    }
+    else if(descNum == 1){
+       fDesc = "Ham"; 
+    }
+    else{
+       fDesc = "Lettuce"; 
+    }
+    foods.add(0, new Food(fDesc, (int)random(100), (int)random(10), i));
+  }
+  
 }
 
 void draw() {
@@ -32,6 +49,13 @@ void draw() {
   flo.move();
   for (Table t : tables){
     t.display();}
+  for (Food f: foods){
+     f.display(); 
+     /*if(mousePressed && (dist(mouseX, mouseY, f.x, f.y) < 10)){
+        Food renegade = foods.remove(0);       
+        renegade.move(tables.get(0)); 
+     }*/
+  }
     flo.display();
     if(mousePressed){
       for(Table t: tables){

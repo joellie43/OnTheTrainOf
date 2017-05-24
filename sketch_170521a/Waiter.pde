@@ -74,9 +74,9 @@ class Waiter{
     inHands = foo;
   }
   
-  void takeOrder(Customer c){
+  /*void takeOrder(Customer c){
     //order = new Check(c.order());
-  }
+  }*/
   
   //gives check to chef
   /*giveCheck(Check c){
