@@ -8,17 +8,17 @@ class Customer{
   int timerSec; //how long each customer is willing to wait for service
   color shade;
   
-  Customer(String desc, int ID, int num, int sec){
+  Customer(String desc, int ID, int num, int sec, int xcor, int ycor){
     description = desc;
     id = ID; 
     partyOf = num;
     timerSec = sec;
     shade = color(170, 220, 60);
-    x = 20;
-    y = 20;
+    x = xcor;
+    y = ycor;
   }
   
-  void display(int x, int y){
+  void display(){
     PShape customer, c1, c2, c3, c4;
     
     //waiter shape group
@@ -38,11 +38,8 @@ class Customer{
     
     //put it all together
     customer.addChild(c1);
-   
     customer.addChild(c2);
-    
     customer.addChild(c3);
-    
     customer.addChild(c4);
     
     shape(customer);
