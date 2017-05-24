@@ -11,6 +11,7 @@ int customerSize = 300;
 int cx, cy;
 int xOffset = 0;
 int yOffset = 0;
+boolean disableFlo = false;
 
 void setup() {
   size(960, 640);
@@ -34,7 +35,7 @@ void draw() {
     flo.display();
     if(mousePressed){
       for(Table t: tables){
-        if(dist(mouseX,mouseY,t.x,t.y) < 55 && !overCustomer){
+        if(!disableFlo && dist(mouseX,mouseY,t.x,t.y) < 55){
           flo.targetX = t.x;
           flo.targetY = t.y;
         }
@@ -43,7 +44,6 @@ void draw() {
       // Test if the cursor is over the box 
   if (mouseX > cx-customerSize && mouseX < cx+customerSize && 
       mouseY > cy-customerSize && mouseY < cy+customerSize) {
-        System.out.println("above customer");
     overCustomer = true;  
     if(!lockedCustomer) { 
       System.out.println("hi");
@@ -72,6 +72,7 @@ void mousePressed() {
 }
 
 void mouseDragged() {
+  disableFlo = true;
   if(lockedCustomer) {
     cx = mouseX-xOffset; 
     cy = mouseY-yOffset; 
@@ -79,5 +80,6 @@ void mouseDragged() {
 }
 
 void mouseReleased() {
+  disableFlo = false;
   lockedCustomer = false;
 }
