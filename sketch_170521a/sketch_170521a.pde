@@ -56,15 +56,18 @@ void draw() {
         renegade.move(tables.get(0)); 
      }*/
   }
-    flo.display();
-    if(mousePressed){
-      for(Table t: tables){
-        if(!disableFlo && dist(mouseX,mouseY,t.x,t.y) < 55){
-          flo.targetX = t.x;
-          flo.targetY = t.y;
-        }
-      }
-      }
+  //flo's movement
+  flo.display();
+  for(Table t: tables){
+    if(mousePressed && !disableFlo && dist(mouseX,mouseY,t.x,t.y) < 55){
+      flo.targetX = t.x;
+      flo.targetY = t.y;
+    }
+  }
+  if(mousePressed&& !disableFlo && dist(mouseX,mouseY,300,40) < 40){//if user clicks food station
+    flo.targetX = 300;
+    flo.targetY = 40;
+  }
       // Test if the cursor is over the box 
   if (mouseX > cx-customerSize && mouseX < cx+customerSize && 
       mouseY > cy-customerSize && mouseY < cy+customerSize) {
