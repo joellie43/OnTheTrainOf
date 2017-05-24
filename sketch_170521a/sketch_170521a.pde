@@ -34,7 +34,7 @@ void draw() {
     flo.display();
     if(mousePressed){
       for(Table t: tables){
-        if(dist(mouseX,mouseY,t.x,t.y) < 55){
+        if(dist(mouseX,mouseY,t.x,t.y) < 55 && !overCustomer){
           flo.targetX = t.x;
           flo.targetY = t.y;
         }
