@@ -7,10 +7,8 @@ ArrayList<Customer> customers;
 
 boolean overCustomer = false;
 boolean lockedCustomer = false;
-boolean overFood = false;
-boolean lockedFood = false;
+Customer target;
 int customerSize = 300;
-int cx, cy;
 int xOffset = 0;
 int yOffset = 0;
 boolean disableFlo = false;
@@ -24,9 +22,8 @@ void setup() {
   tables.add(3, new Table(4,765,200));
   flo = new Waiter();
   customers = new ArrayList<Customer>();
-  customers.add(new Customer("businessman",1,4,10));
-  cx = width/2;
-  cy = height/2;
+  customers.add(new Customer("businessman",1,4,10,50,100));
+  target = null;
   
   foods = new ArrayList<Food>();
   for(int i = 0; i < 8; i++){
@@ -69,41 +66,38 @@ void draw() {
     flo.targetX = 300;
     flo.targetY = 40;
   }
-      // Test if the cursor is over the box 
-  if (mouseX > cx-customerSize && mouseX < cx+customerSize && 
-      mouseY > cy-customerSize && mouseY < cy+customerSize) {
-    overCustomer = true;  
-    if(!lockedCustomer) { 
-      System.out.println("hi");
-      stroke(255); 
-      fill(153);
-    } 
-  } else {
-    stroke(153);
-    fill(153);
+  
+      for (Customer c : customers){
+      // Test if the cursor is over the customer 
+  if (mouseX > c.x-customerSize && mouseX < c.x +customerSize && 
+      mouseY > c.y-customerSize && mouseY < c.y+customerSize) {
+    overCustomer = true;
+    //keep track of customer
+    target = c;
+    if(lockedCustomer) {
     overCustomer = false;
   }
-  for (Customer c : customers){
-      c.display(cx,cy);}
+      }
+  
+      c.display();}
 }
 
 void mousePressed() {
   if(overCustomer) { 
-    lockedCustomer = true; 
-    fill(255, 255, 255);
+    lockedCustomer = true;
   } else {
     lockedCustomer = false;
   }
-  xOffset = mouseX-cx; 
-  yOffset = mouseY-cy; 
+  xOffset = mouseX-target.x; 
+  yOffset = mouseY-target.y; 
 
 }
 
 void mouseDragged() {
   disableFlo = true;
   if(lockedCustomer) {
-    cx = mouseX-xOffset; 
-    cy = mouseY-yOffset; 
+    target.x = mouseX-xOffset; 
+    target.y = mouseY-yOffset; 
   }
 }
 
