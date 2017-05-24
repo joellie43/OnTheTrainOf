@@ -5,6 +5,13 @@ Waiter flo;
 ArrayList<Food> foods;
 ArrayList<Customer> customers;
 
+boolean overCustomer = false;
+boolean lockedCustomer = false;
+int customerSize = 300;
+int cx, cy;
+int xOffset = 0;
+int yOffset = 0;
+
 void setup() {
   size(960, 640);
   tables = new ArrayList<Table>();
@@ -15,7 +22,8 @@ void setup() {
   flo = new Waiter();
   customers = new ArrayList<Customer>();
   customers.add(new Customer("businessman",1,4,10));
-  
+  cx = width/2;
+  cy = height/2;
 }
 
 void draw() {
@@ -32,8 +40,44 @@ void draw() {
         }
       }
       }
-     
-     
-    for (Customer c : customers){
-        c.display();}
+      // Test if the cursor is over the box 
+  if (mouseX > cx-customerSize && mouseX < cx+customerSize && 
+      mouseY > cy-customerSize && mouseY < cy+customerSize) {
+        System.out.println("above customer");
+    overCustomer = true;  
+    if(!lockedCustomer) { 
+      System.out.println("hi");
+      stroke(255); 
+      fill(153);
+    } 
+  } else {
+    stroke(153);
+    fill(153);
+    overCustomer = false;
+  }
+  for (Customer c : customers){
+      c.display(cx,cy);}
+}
+
+void mousePressed() {
+  if(overCustomer) { 
+    lockedCustomer = true; 
+    fill(255, 255, 255);
+  } else {
+    lockedCustomer = false;
+  }
+  xOffset = mouseX-cx; 
+  yOffset = mouseY-cy; 
+
+}
+
+void mouseDragged() {
+  if(lockedCustomer) {
+    cx = mouseX-xOffset; 
+    cy = mouseY-yOffset; 
+  }
+}
+
+void mouseReleased() {
+  lockedCustomer = false;
 }
