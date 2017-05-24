@@ -32,17 +32,17 @@ class Waiter{
     waiter = createShape(GROUP);
     
     //making all the appendages
-    body = createShape(RECT, x, y, 40, 50);
+    body = createShape(RECT, x, y, 24, 25);
     body.setFill(color(shade));
-    head = createShape(ELLIPSE, x+20, y-20, 45, 45);
+    head = createShape(ELLIPSE, x+12, y-10, 22, 22);
     head.setFill(color(shade));
-    armL = createShape(RECT, x-40, y+5, 40, 10);
+    armL = createShape(RECT, x-21, y+5, 20, 5);
     armL.setFill(color(shade));
-    armR = createShape(RECT, x+40, y+5, 40, 10);
+    armR = createShape(RECT, x+25, y+5, 20, 5);
     armR.setFill(color(shade));
-    legL = createShape(RECT, x+5, y+50, 10, 40);
+    legL = createShape(RECT, x+2, y+25, 5, 20);
     legL.setFill(color(shade));
-    legR = createShape(RECT, x+25, y+50, 10, 40);
+    legR = createShape(RECT, x+18, y+25, 5, 20);
     legR.setFill(color(shade));
     
     //put it all together

@@ -7,6 +7,8 @@ ArrayList<Customer> customers;
 
 boolean overCustomer = false;
 boolean lockedCustomer = false;
+boolean overFood = false;
+boolean lockedFood = false;
 int customerSize = 300;
 int cx, cy;
 int xOffset = 0;
@@ -49,12 +51,11 @@ void draw() {
   flo.move();
   for (Table t : tables){
     t.display();}
+
   for (Food f: foods){
      f.display(); 
-     /*if(mousePressed && (dist(mouseX, mouseY, f.x, f.y) < 10)){
-        Food renegade = foods.remove(0);       
-        renegade.move(tables.get(0)); 
-     }*/
+     
+
   }
     flo.display();
     if(mousePressed){
