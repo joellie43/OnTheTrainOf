@@ -28,6 +28,7 @@ void draw() {
           flo.targetY = t.y;
         }
       }
+      }
      
      customers.add(new Customer("businessman",1,4,10));
      for (Customer c : customers){
