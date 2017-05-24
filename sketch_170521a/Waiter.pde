@@ -6,6 +6,8 @@ class Waiter{
   Food inHands;
   int madeSoFar;
   int state;
+  int targetX;
+  int targetY;
   Waiter(){
     x = 45;
     y = 45;
@@ -13,9 +15,17 @@ class Waiter{
     state = 0; //default
     dx = 1;
     dy = 1;
+    targetX = -1;
+    targetY = -1;
   }
   
   void display(){
+    /*
+    pushMatrix();
+  translate(width*0.8, height*0.5);
+ // star(0, 0, 20, 50, 5); 
+  popMatrix();
+    fill(shade);*/
     PShape waiter, head, body, armL, armR, legL, legR;
     
     //waiter shape group
@@ -46,20 +56,19 @@ class Waiter{
     shape(waiter);
   }
 
-  void move(int xcor, int ycor){
-      x = xcor;
-      y = ycor;
+  void move(){
+      if(targetX != -1 && targetY != -1){
+        float D = dist(x,y,targetX,targetY);
+        float dx = 10*(targetX-x)/D;
+        float dy = 10*(targetY-y)/D;
+        if(D > 55){//continue moving towards target
+          x += dx;
+          y += dy;
+        }
+        else{targetX = -1; targetY = -1;}//target reached
+      }
   }
   
-  void click(){
-    if(mousePressed){
-       while((pmouseX != x) && (pmouseY != y)){
-          dy = (pmouseY - y)/360;
-          dx = (pmouseX - x)/640;
-          state = 1; //following state
-       }
-    }
-  }
   
   void pickUpFood(Food foo){
     inHands = foo;
