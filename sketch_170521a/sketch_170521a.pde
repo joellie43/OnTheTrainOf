@@ -13,11 +13,14 @@ void setup() {
   tables.add(2, new Table(4,375,500));
   tables.add(3, new Table(4,765,200));
   flo = new Waiter();
+  customers = new ArrayList<Customer>();
+  customers.add(new Customer("businessman",1,4,10));
   
 }
 
 void draw() {
   background(0);
+  flo.move();
   for (Table t : tables){
     t.display();}
     flo.display();
@@ -30,7 +33,7 @@ void draw() {
       }
       }
      
-     customers.add(new Customer("businessman",1,4,10));
-     for (Customer c : customers){
-         c.display();}
+     
+    for (Customer c : customers){
+        c.display();}
 }
