@@ -7,6 +7,7 @@ class Customer{
   int partyOf; //how many people in one party
   int timerSec; //how long each customer is willing to wait for service
   color shade;
+  boolean sitting;
   
   Customer(String desc, int ID, int num, int sec, int xcor, int ycor){
     description = desc;
@@ -16,6 +17,7 @@ class Customer{
     shade = color(170, 220, 60);
     x = xcor;
     y = ycor;
+    sitting = false;
   }
   
   void display(){
@@ -61,4 +63,3 @@ class Customer{
   //walk towards exit and disappears
   void leave(){
   }
-}
