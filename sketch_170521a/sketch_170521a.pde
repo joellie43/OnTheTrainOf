@@ -5,13 +5,9 @@ Waiter flo;
 ArrayList<Food> foods;
 ArrayList<Customer> customers;
 
-boolean overCustomer = false;
 boolean lockedCustomer = false;
-Customer target;
-int customerSize = 300;
-int xOffset = 0;
-int yOffset = 0;
 boolean disableFlo = false;
+Customer target;
 
 void setup() {
   size(960, 640);
@@ -45,16 +41,15 @@ void setup() {
 
 void draw() {
   background(0);
-  flo.move();
+  
   for (Table t : tables){
-    t.display();}
-
+    t.display();
+  }
   for (Food f: foods){
      f.display(); 
-     
-
   }
   //****FLO'S CODE****
+  flo.move();
   flo.display();
   for(Table t: tables){
     //user clicks on table
@@ -72,43 +67,25 @@ void draw() {
     flo.targetX = 300;
     flo.targetY = 40;
   }
-  //*****************
-  
-      for (Customer c : customers){
-      // Test if the cursor is over the customer 
-  if (mouseX > c.x-customerSize && mouseX < c.x +customerSize && 
-      mouseY > c.y-customerSize && mouseY < c.y+customerSize) {
-    overCustomer = true;
+ //*****************
+ //**Customer Code**
+ for (Customer c : customers){
+  c.display();
+  if (mousePressed && dist(mouseX,mouseY,c.x,c.y) < 55) {
+    lockedCustomer = true;
+    disableFlo = true;
     //keep track of customer
     target = c;
-    if(lockedCustomer) {
-    overCustomer = false;
   }
-      }
-  
-      c.display();}
-}
-
-void mousePressed() {
-  if(overCustomer) { 
-    lockedCustomer = true;
-  } else {
-    lockedCustomer = false;
-  }
-  xOffset = mouseX-target.x; 
-  yOffset = mouseY-target.y; 
-
-}
-
-void mouseDragged() {
-  disableFlo = true;
-  if(lockedCustomer) {
-    target.x = mouseX-xOffset; 
-    target.y = mouseY-yOffset; 
-  }
-}
+ }
+ if(mousePressed && target != null){
+   target.x = mouseX;
+   target.y = mouseY;
+ }
+}//end of draw()
 
 void mouseReleased() {
   disableFlo = false;
   lockedCustomer = false;
+  target = null;
 }
