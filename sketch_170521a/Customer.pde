@@ -26,13 +26,14 @@ class Customer{
     //waiter shape group
     customer = createShape(GROUP);
     
+    
     //making all the appendages
     c1 = createShape(TRIANGLE, x-50, y+25, x, y+25, x-25,y-15);
     c1.setFill(color(shade));
-    c2 = createShape(TRIANGLE, x, y+25, x+25, y-50, x+50, y-20);
+    c2 = createShape(TRIANGLE, x, y+25, x+50, y+25, x+25, y-20);
     c2.setFill(color(shade));
 
-    c3 = createShape(TRIANGLE, x-50, y-25, x-25, y+10, x, y-25);
+    c3 = createShape(TRIANGLE, x-50, y-25, x-25, y+25, x, y-50);
     c3.setFill(color(shade));
     
     c4 = createShape(TRIANGLE, x, y-25, x+25, y+10, x+50, y-25);
