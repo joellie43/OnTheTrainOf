@@ -5,7 +5,6 @@ Waiter flo;
 ArrayList<Food> foods;
 ArrayList<Customer> customers;
 
-boolean lockedCustomer = false;
 boolean disableFlo = false;
 Customer target;
 
@@ -71,21 +70,32 @@ void draw() {
  //**Customer Code**
  for (Customer c : customers){
   c.display();
-  if (mousePressed && dist(mouseX,mouseY,c.x,c.y) < 55) {
-    lockedCustomer = true;
+  if (!c.sitting && mousePressed && dist(mouseX,mouseY,c.x,c.y) < 55) {
     disableFlo = true;
     //keep track of customer
     target = c;
   }
  }
+ //while a customer is being dragged
  if(mousePressed && target != null){
    target.x = mouseX;
    target.y = mouseY;
  }
+ //***************
 }//end of draw()
 
-void mouseReleased() {
+//mouseReleased for dropping customer
+void mouseReleased(){
+  //check if customer was dropped off at a table
+  if(target != null){
+    for(Table t: tables){
+      if(dist(target.x,target.y,t.x,t.y) < 55){
+        target.x = t.x;
+        target.y = t.y;
+        target.sitting = true;
+      }
+    }
+  }
   disableFlo = false;
-  lockedCustomer = false;
   target = null;
 }
