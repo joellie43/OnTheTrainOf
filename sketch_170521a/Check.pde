@@ -8,6 +8,6 @@ class Check{
   
   void addFood(Food f){
   foods.add(f);
-  total += f.price;
+  total += f.cost;
   }
 }
