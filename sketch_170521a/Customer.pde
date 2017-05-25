@@ -27,15 +27,15 @@ class Customer{
     customer = createShape(GROUP);
     
     //making all the appendages
-    c1 = createShape(TRIANGLE, x, y, x+50, y, x+25,y-25);
+    c1 = createShape(TRIANGLE, x-50, y+25, x, y+25, x-25,y-15);
     c1.setFill(color(shade));
-    c2 = createShape(TRIANGLE, x+50, y, x+100, y, x+75, y-25);
+    c2 = createShape(TRIANGLE, x, y+25, x+25, y-50, x+50, y-20);
     c2.setFill(color(shade));
 
-    c3 = createShape(TRIANGLE, x, y+25, x+50, y+25, x+25, y+5);
+    c3 = createShape(TRIANGLE, x-50, y-25, x-25, y+10, x, y-25);
     c3.setFill(color(shade));
     
-    c4 = createShape(TRIANGLE, x+50, y+25, x+100, y+25, x+75, y+5);
+    c4 = createShape(TRIANGLE, x, y-25, x+25, y+10, x+50, y-25);
     c4.setFill(color(shade));
     
     //put it all together
