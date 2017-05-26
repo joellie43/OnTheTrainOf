@@ -71,6 +71,10 @@ void draw() {
       flo.targetX = t.x;
       flo.targetY = t.y;
     }
+    //flo is going to bumb into a table that's not a target
+    if(t.x != flo.targetX && t.y != flo.targetY && dist(flo.x+flo.dx,flo.y+flo.dy,t.x,t.y) < 55){
+      flo.rotate();
+    }
   }
   //user clicks food station
   if(mousePressed&& !disableFlo && dist(mouseX,mouseY,300,40) < 40){
@@ -92,11 +96,13 @@ void draw() {
  //**Customer Code**
  for (Customer c : customers){
   c.display();
-  if (!c.sitting && mousePressed && dist(mouseX,mouseY,c.x,c.y) < 55) {
+  if (c.sittingAt == null && mousePressed && dist(mouseX,mouseY,c.x,c.y) < 55) {
     disableFlo = true;
     //keep track of customer
     target = c;
   }
+  else if (c.sittingAt != null){
+  c.askToOrder();}
  }
  //while a customer is being dragged
  if(mousePressed && target != null){
@@ -112,9 +118,7 @@ void mouseReleased(){
   if(target != null){
     for(Table t: tables){
       if(dist(target.x,target.y,t.x,t.y) < 55){
-        target.x = t.x;
-        target.y = t.y;
-        target.sitting = true;
+        target.sit(t);
       }
     }
   }
