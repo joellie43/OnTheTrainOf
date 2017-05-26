@@ -71,10 +71,6 @@ void draw() {
       flo.targetX = t.x;
       flo.targetY = t.y;
     }
-    //flo is going to bumb into a table that's not a target
-    if(t.x != flo.targetX && t.y != flo.targetY && dist(flo.x+flo.dx,flo.y+flo.dy,t.x,t.y) < 55){
-      flo.rotate();
-    }
   }
   //user clicks food station
   if(mousePressed&& !disableFlo && dist(mouseX,mouseY,300,40) < 40){
