@@ -19,6 +19,7 @@ class Customer{
     x = xcor;
     y = ycor;
     sitting = false;
+    sittingAt = null;
   }
   
   void display(){
@@ -47,26 +48,29 @@ class Customer{
   }
   
   void sit(Table t){
-    if (dist(x,y,t.x,t.y) < 10){
-      
-      sittingAt = t;}
+      sittingAt = t;
   }
   
   void askToOrder(){
+    
     //make an exclamation point appear above table
     PShape exclamation, top, bottom;
     
     exclamation = createShape(GROUP);
     
-    top = createShape(ELLIPSE, sittingAt.x, sittingAt.y, 3, 7);
-    top.setFill(color(255, 204, 0));
-    bottom = createShape(ELLIPSE, sittingAt.x, sittingAt.y - 5, 3,3);
-    bottom.setFill(color(255, 204, 0));
+    bottom = createShape(ELLIPSE, sittingAt.x, sittingAt.y+37, 20,20);
+    bottom.setFill(color(256, 0, 0));
+    top = createShape(ELLIPSE, sittingAt.x, sittingAt.y, 20, 55);
+    top.setFill(color(256, 0, 0));
+    
     
     exclamation.addChild(top);
     exclamation.addChild(bottom);
     
     shape(exclamation);
+    
+    //make it show
+   
   }
   
   /*Food order(){
