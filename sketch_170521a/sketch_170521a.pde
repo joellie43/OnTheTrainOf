@@ -4,9 +4,16 @@ ArrayList<Table> tables;
 Waiter flo;
 ArrayList<Food> foods;
 ArrayList<Customer> customers;
+Food dinner;
 
-boolean disableFlo = false;
+boolean overCustomer = false;
+boolean lockedCustomer = false;
+boolean lockedFood = false;
 Customer target;
+int customerSize = 300;
+int xOffset = 0;
+int yOffset = 0;
+boolean disableFlo = false;
 
 void setup() {
   size(960, 640);
@@ -22,7 +29,7 @@ void setup() {
   
   foods = new ArrayList<Food>();
   for(int i = 0; i < 8; i++){
-    String fDesc;
+    /*String fDesc;
     int descNum = (int)random(3);
     if(descNum == 0){
        fDesc = "Sausage";
@@ -33,7 +40,8 @@ void setup() {
     else{
        fDesc = "Lettuce"; 
     }
-    foods.add(0, new Food(fDesc, (int)random(100), (int)random(10), i));
+    foods.add(0, new Food(fDesc, (int)random(100), (int)random(10), i));*/
+    createFood(foods, i);
   }
   
 }
@@ -66,6 +74,17 @@ void draw() {
     flo.targetX = 300;
     flo.targetY = 40;
   }
+  if(flo.x == 250 && flo.y == 40){
+    
+    lockedFood = true;
+    System.out.println("x: " + flo.x + " y: " + flo.y);
+  }
+
+  if(lockedFood){
+     serveFood(foods);
+     lockedFood = false;
+  }
+  //*****************
  //*****************
  //**Customer Code**
  for (Customer c : customers){
@@ -98,4 +117,39 @@ void mouseReleased(){
   }
   disableFlo = false;
   target = null;
+}
+
+void createFood(ArrayList foods, int i){
+    String fDesc;
+    int descNum = (int)random(3);
+    if(descNum == 0){
+       fDesc = "Sausage";
+    }
+    else if(descNum == 1){
+       fDesc = "Ham"; 
+    }
+    else{
+       fDesc = "Lettuce"; 
+    }
+    foods.add(new Food(fDesc, (int)random(100), (int)random(10), i));
+}
+
+void serveFood(ArrayList foods){
+  Table targetTable = new Table(0, 0, 0);
+    //take out the first food
+     dinner = (Food)foods.remove(0);
+     //replenish the food queue
+     createFood(foods, 7); //final index of the arrayList
+     for(Table t: tables){
+        if(!(t.served)){
+            targetTable = t;
+            t.served = true;
+            break;
+        }
+     }
+
+   flo.targetX = targetTable.x;
+   flo.targetY = targetTable.y;
+   dinner.x = flo.x;
+   dinner.y = flo.y;
 }
