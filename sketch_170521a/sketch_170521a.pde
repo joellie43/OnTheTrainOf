@@ -3,6 +3,7 @@ import java.util.ArrayList;
 ArrayList<Table> tables;
 Waiter flo;
 ArrayList<Food> foods;
+ArrayList<Food> toServe;
 ArrayList<Customer> customers;
 Food dinner;
 
@@ -27,6 +28,7 @@ void setup() {
   customers.add(new Customer("businessman",1,4,10,50,100));
   target = null;
   
+  toServe = new ArrayList<Food>();
   foods = new ArrayList<Food>();
   for(int i = 0; i < 8; i++){
     /*String fDesc;
@@ -53,7 +55,12 @@ void draw() {
     t.display();
   }
   for (Food f: foods){
-     f.display(); 
+     f.display();
+  }
+  for (Food x: toServe){
+     x.display();
+     x.x = flo.x;
+     x.y = flo.y;
   }
   //****FLO'S CODE****
   flo.move();
@@ -138,6 +145,9 @@ void serveFood(ArrayList foods){
   Table targetTable = new Table(0, 0, 0);
     //take out the first food
      dinner = (Food)foods.remove(0);
+     for(Object f: foods){
+        ((Food)f).position -= 1; 
+     }
      //replenish the food queue
      createFood(foods, 7); //final index of the arrayList
      for(Table t: tables){
@@ -147,6 +157,7 @@ void serveFood(ArrayList foods){
             break;
         }
      }
+     toServe.add(dinner);
 
    flo.targetX = targetTable.x;
    flo.targetY = targetTable.y;
