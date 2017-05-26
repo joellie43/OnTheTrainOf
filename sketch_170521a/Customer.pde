@@ -64,3 +64,4 @@ class Customer{
   //walk towards exit and disappears
   void leave(){
   }
+}
