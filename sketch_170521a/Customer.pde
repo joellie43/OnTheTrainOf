@@ -7,24 +7,36 @@ class Customer{
   int partyOf; //how many people in one party
   int timerSec; //how long each customer is willing to wait for service
   color shade;
-  boolean sitting;
   Table sittingAt;
+  int sittingTime;//time at which customer started sitting
+  boolean leaving;
   
   Customer(String desc, int ID, int num, int sec, int xcor, int ycor){
     description = desc;
     id = ID; 
     partyOf = num;
     timerSec = sec;
-    shade = color(170, 220, 60);
+    shade = color(0, 255, 0);
     x = xcor;
     y = ycor;
-    sitting = false;
     sittingAt = null;
+    sittingTime = -1;
+    leaving = false;
   }
   
   void display(){
     PShape customer, c1, c2, c3, c4;
     
+    if(sittingTime != -1){
+      int timeDif = millis() - sittingTime;
+      if(timeDif > 10000){
+        shade = color(255,0,0);
+        leave();
+      } 
+      else{
+        shade = color(255 * timeDif/10000,255 - 255 * timeDif/10000,0);
+      }
+    }
     //waiter shape group
     customer = createShape(GROUP);
     
@@ -47,15 +59,17 @@ class Customer{
     shape(customer);
   }
   
+  //sets customers table and time they started sitting
   void sit(Table t){
       sittingAt = t;
+      sittingTime = millis();
   }
   
+  //Precondition: sit(Table t) has been called
   void askToOrder(){
     
     //make an exclamation point appear above table
     PShape exclamation, top, bottom;
-    
     exclamation = createShape(GROUP);
     
     bottom = createShape(ELLIPSE, sittingAt.x, sittingAt.y+37, 20,20);
@@ -95,7 +109,8 @@ class Customer{
   }
   
 
+
   //walk towards exit and disappears
   void leave(){
-  }
-}
+    leaving = true;
+  }}
