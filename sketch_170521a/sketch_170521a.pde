@@ -15,6 +15,7 @@ int customerSize = 300;
 int xOffset = 0;
 int yOffset = 0;
 boolean disableFlo = false;
+int initTime;
 
 void setup() {
   size(960, 640);
@@ -45,7 +46,7 @@ void setup() {
     foods.add(0, new Food(fDesc, (int)random(100), (int)random(10), i));*/
     createFood(foods, i);
   }
-  
+  initTime = millis();//roughly 370-450 by end of setup
 }
 
 void draw() {
@@ -70,10 +71,6 @@ void draw() {
     if(mousePressed && !disableFlo && dist(mouseX,mouseY,t.x,t.y) < 55){
       flo.targetX = t.x;
       flo.targetY = t.y;
-    }
-    //flo is going to bumb into a table that's not a target
-    if(t.x != flo.targetX && t.y != flo.targetY && dist(flo.x+flo.dx,flo.y+flo.dy,t.x,t.y) < 55){
-      flo.rotate();
     }
   }
   //user clicks food station
@@ -102,13 +99,20 @@ void draw() {
     target = c;
   }
   else if (c.sittingAt != null){
-  c.askToOrder();}
+    c.askToOrder();
+  }
+  if(c.leaving){
+    if(c.x > -50){
+      c.x -= 5;
+    }
+  }
  }
  //while a customer is being dragged
  if(mousePressed && target != null){
    target.x = mouseX;
    target.y = mouseY;
  }
+ 
  //***************
 }//end of draw()
 
