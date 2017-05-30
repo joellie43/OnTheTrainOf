@@ -100,7 +100,7 @@ void draw() {
   }
   //*****************
  //*****************
- //**Customer Code**
+  //**Customer Code**
  for (Customer c : customers){
   c.display();
   if (c.sittingAt == null && mousePressed && dist(mouseX,mouseY,c.x,c.y) < 55) {
@@ -109,10 +109,21 @@ void draw() {
     target = c;
   }
   else if (c.sittingAt != null){
+    if (c.ordered){
+      if (millis() - c.sittingTime < 10000){
+        //happily eat food
+      }
+      else {
+        c.askForService();
+        if (dist(flo.x,flo.y,c.x,c.y) < 100){
+      //c.askForCheck();
+    }
+    }
+    }
+   else{ 
     c.askForService();
     if (dist(flo.x,flo.y,c.x,c.y) < 100){
-      c.order();
-    c.display();}
+      c.order();}
   }
   if(c.leaving){
     if(c.x > -50){
@@ -120,6 +131,7 @@ void draw() {
     }
   }
  }
+  }
  //while a customer is being dragged
  if(mousePressed && target != null){
    target.x = mouseX;
