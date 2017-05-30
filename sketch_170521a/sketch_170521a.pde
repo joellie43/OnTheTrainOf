@@ -99,7 +99,10 @@ void draw() {
     target = c;
   }
   else if (c.sittingAt != null){
-    c.askToOrder();
+    c.askForService();
+    if (dist(flo.x,flo.y,c.x,c.y) < 52){
+      c.order();
+    c.display();}
   }
   if(c.leaving){
     if(c.x > -50){

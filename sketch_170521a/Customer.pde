@@ -1,6 +1,6 @@
 import java.util.List;
 class Customer{
-  List<Food> menu;
+  Food[] menu = new Food[3];
   int x,y;
   String description; //such as businessman, food critic, mother
   int id; //to keep track of customer
@@ -12,6 +12,9 @@ class Customer{
   boolean leaving;
   
   Customer(String desc, int ID, int num, int sec, int xcor, int ycor){
+    menu[0] = new Food("sausage",10,5000,0);
+    menu[1] = new Food("ham",10,5000,1);
+    menu[2] = new Food("lettuce",3,3000,2);
     description = desc;
     id = ID; 
     partyOf = num;
@@ -65,8 +68,8 @@ class Customer{
       sittingTime = millis();
   }
   
-  //Precondition: sit(Table t) has been called
-  void askToOrder(){
+  //Precondition: sit(Table t) has been called, so sittingAt is != null
+  void askForService(){
     
     //make an exclamation point appear above table
     PShape exclamation, top, bottom;
@@ -83,31 +86,13 @@ class Customer{
     
     shape(exclamation);
     
-    //make it show
-   
   }
   
-  /*Food order(){
-    return menu.get(random(menu.size());
-  }*/
-  
-  void askToPay(){
-    //make an exclamation point appear above table
-    PShape exclamation, top, bottom;
-    
-    exclamation = createShape(GROUP);
-    
-    top = createShape(ELLIPSE, sittingAt.x, sittingAt.y, 3, 7);
-    top.setFill(color(255, 204, 0));
-    bottom = createShape(ELLIPSE, sittingAt.x, sittingAt.y - 5, 3,3);
-    bottom.setFill(color(255, 204, 0));
-    
-    exclamation.addChild(top);
-    exclamation.addChild(bottom);
-    
-    shape(exclamation);
+  Food order(){
+        System.out.println("HI i ordered");
+    return menu[(int)random((float)menu.length)];
+
   }
-  
 
 
   //walk towards exit and disappears
