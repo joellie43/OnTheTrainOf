@@ -7,6 +7,7 @@ class Customer{
   int id; //to keep track of customer
   int partyOf; //how many people in one party
   int timerSec; //how long each customer is willing to wait for service
+  int timeOrdered; //mark the time at which customer ordered
   color shade;
   Table sittingAt;
   int sittingTime;//time at which customer started sitting
@@ -45,6 +46,9 @@ class Customer{
         shade = color(255 * timeDif/10000,255 - 255 * timeDif/10000,0);
       }
     }
+    else {
+      shade = color(0,255,0);}
+      
     //waiter shape group
     customer = createShape(GROUP);
     
