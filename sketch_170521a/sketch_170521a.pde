@@ -16,9 +16,11 @@ int xOffset = 0;
 int yOffset = 0;
 boolean disableFlo = false;
 int initTime;
+int start;
 
 void setup() {
   size(960, 640);
+  start = second();
   tables = new ArrayList<Table>();
   tables.add(0, new Table(4,375,200));
   tables.add(1, new Table(4,765,500));
@@ -51,6 +53,14 @@ void setup() {
 
 void draw() {
   background(0);
+  //light pink top right corner
+  fill(255,200,200);
+  ellipse(960,0,300,300);
+  //timer at top right corner
+  int timer = second() - start;
+  textSize(32);
+  fill(255);
+  text(timer,875,50);
   
   for (Table t : tables){
     t.display();
