@@ -12,3 +12,7 @@ Timer for each customer : exclamation mark (turns from green to yellow to red, r
 Food : circles
 Tables : squares
 Top right square : Timer
+
+##Launch Instructions
+
+Type in `processing sketch_170521a` into the terminal after having cloned this repo. Make sure that you Processing downloaded in order for this to work.
