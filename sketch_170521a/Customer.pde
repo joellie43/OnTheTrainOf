@@ -1,6 +1,7 @@
 import java.util.List;
 class Customer{
   Food[] menu = new Food[3];
+  
   int x,y;
   String description; //such as businessman, food critic, mother
   int id; //to keep track of customer
@@ -11,6 +12,7 @@ class Customer{
   int sittingTime;//time at which customer started sitting
   boolean ordered;
   boolean leaving;
+  Check myCheck;
   
   Customer(String desc, int ID, int num, int sec, int xcor, int ycor){
     menu[0] = new Food("sausage",10,5000,0);
@@ -26,6 +28,7 @@ class Customer{
     sittingAt = null;
     sittingTime = -1;
     leaving = false;
+    myCheck = new Check();
   }
   
   void display(){
@@ -90,8 +93,10 @@ class Customer{
   }
   
   Food order(){
-        ordered = true;
-    return menu[(int)random((float)menu.length)];
+    ordered = true;
+    //add food to check
+    myCheck.addFood(menu[(int)random(menu.length)]);
+    return myCheck.getFood(0);
 
   }
 
@@ -99,4 +104,5 @@ class Customer{
   //walk towards exit and disappears
   void leave(){
     leaving = true;
-  }}
+  }
+}
