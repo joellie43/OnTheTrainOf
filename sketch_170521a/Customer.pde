@@ -11,6 +11,7 @@ class Customer{
   Table sittingAt;
   int sittingTime;//time at which customer started sitting
   boolean ordered;
+  boolean served;
   boolean leaving;
   Check myCheck;
   
