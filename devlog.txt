@@ -61,9 +61,18 @@ Dimitriy :: Made food move with Flo and arrayList of Foods that would shift if a
 
 2017-5-26
 ------------------------------------------------------------
-J
+Joelle :: Wrote ReadMe and programmed exclamation mark that pops up when customers are seated
+Dmitriy :: Continued programming Food movement
+Nikita :: Expereimented with different time mechanisms
 
 2017-5-29
 -------------------------------------------------------------
-Joelle :: Allowed customers to order, added serveFood() to waiter and allowed for clock 
-Nikita :: Implemented a clock and programmed customer p
+Joelle :: Allowed customers to order, added serveFood() to waiter and put clock in the corner for the user to see 
+Nikita :: Implemented a clock and programmed customer patience(shade changing and leaving)
+Dmitriy :: Allowed for customer patience to reset when Flo arrives at table
+
+2017-5-30
+------------------------------------------------------------
+Joelle ::
+Nikita :: Fixed clock bug so that clock doesn't reset every 60 seconds
+Dmitriy ::
