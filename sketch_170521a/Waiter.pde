@@ -1,5 +1,4 @@
 class Waiter{
-
   int x,y;
   color shade; 
   Check order;
@@ -9,7 +8,6 @@ class Waiter{
   int targetX;
   int targetY;
   float dx, dy;
-  
   Waiter(){
     x = 45;
     y = 45;
@@ -71,6 +69,13 @@ class Waiter{
   
   void pickUpFood(Food foo){
     inHands = foo;
+  }
+  
+  boolean serveFood(Customer c){
+    if (c.ordered && inHands == c.myCheck.getFood(0)){
+      c.served = true;
+    c.sittingTime = millis();}
+      return c.served;
   }
   
   /*gives check to customer
