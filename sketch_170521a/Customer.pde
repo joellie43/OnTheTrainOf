@@ -96,6 +96,7 @@ class Customer{
     ordered = true;
     //add food to check
     myCheck.addFood(menu[(int)random(menu.length)]);
+    sittingTime = millis();
     return myCheck.getFood(0);
 
   }
