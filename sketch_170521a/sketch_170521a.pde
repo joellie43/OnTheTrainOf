@@ -88,7 +88,7 @@ void draw() {
     flo.targetX = 300;
     flo.targetY = 40;
   }
-  if(flo.x == 250 && flo.y == 40){
+  if(dist(flo.x,flo.y,250,40) < 40){
     
     lockedFood = true;
     System.out.println("x: " + flo.x + " y: " + flo.y);
@@ -100,7 +100,7 @@ void draw() {
   }
   //*****************
  //*****************
-  //**Customer Code**
+ //**Customer Code**
  for (Customer c : customers){
   c.display();
   if (c.sittingAt == null && mousePressed && dist(mouseX,mouseY,c.x,c.y) < 55) {
@@ -109,21 +109,10 @@ void draw() {
     target = c;
   }
   else if (c.sittingAt != null){
-    if (c.ordered){
-      if (millis() - c.sittingTime < 10000){
-        //happily eat food
-      }
-      else {
-        c.askForService();
-        if (dist(flo.x,flo.y,c.x,c.y) < 100){
-      //c.askForCheck();
-    }
-    }
-    }
-   else{ 
     c.askForService();
     if (dist(flo.x,flo.y,c.x,c.y) < 100){
-      c.order();}
+      c.order();
+    c.display();}
   }
   if(c.leaving){
     if(c.x > -50){
@@ -131,7 +120,6 @@ void draw() {
     }
   }
  }
-  }
  //while a customer is being dragged
  if(mousePressed && target != null){
    target.x = mouseX;
