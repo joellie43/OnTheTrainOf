@@ -10,17 +10,21 @@ Diner Dash
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
 OBSTACLES OVERCOME
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *Dragging multiple shapes while also having click-based functions
-UNRESOLVED ISSUES
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*Making Waiter go around table and not through it
-COOL STUFF LEARNED
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*How to put multiple shapes together with createShape()
-MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+UNRESOLVED 
+*Making Waiter go around table and not through it
+*Making customers reset to green after each interaction
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+COOL STUFF LEARNED
+*How to put multiple shapes together with createShape()
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+MID-DEVELOPMENT DESIGN CHANGES
+*Make customers change from green to red to symbolize patience
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -55,3 +59,7 @@ Dimitriy :: implemented a humanoid shape for the method and began a method allow
 -------------------------------------------------------------
 Joelle & Nikita :: Fixed drag and drop issue with customers
 Dimitriy :: Made food move with Flo
+
+2017-5-29
+-------------------------------------------------------------
+Joelle :: Allowed customers to order, added serveFood() to waiter
