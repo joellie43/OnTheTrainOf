@@ -57,7 +57,7 @@ void draw() {
   fill(255,200,200);
   ellipse(960,0,300,300);
   //timer at top right corner
-  int timer = second() - start;
+  int timer = (millis() - initTime)/1000;
   textSize(32);
   fill(255);
   text(timer,875,50);
