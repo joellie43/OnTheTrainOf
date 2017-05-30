@@ -1,4 +1,5 @@
 class Waiter{
+
   int x,y;
   color shade; 
   Check order;
@@ -8,6 +9,7 @@ class Waiter{
   int targetX;
   int targetY;
   float dx, dy;
+  
   Waiter(){
     x = 45;
     y = 45;
@@ -20,12 +22,6 @@ class Waiter{
   }
   
   void display(){
-    /*
-    pushMatrix();
-  translate(width*0.8, height*0.5);
- // star(0, 0, 20, 50, 5); 
-  popMatrix();
-    fill(shade);*/
     PShape waiter, head, body, armL, armR, legL, legR;
     
     //waiter shape group
@@ -72,18 +68,10 @@ class Waiter{
   void rotate(){
   
   }
+  
   void pickUpFood(Food foo){
     inHands = foo;
   }
-  
-  /*void takeOrder(Customer c){
-    //order = new Check(c.order());
-  }*/
-  
-  //gives check to chef
-  /*giveCheck(Check c){
-  }
-  */
   
   /*gives check to customer
   customer pays, and then leaves*/
