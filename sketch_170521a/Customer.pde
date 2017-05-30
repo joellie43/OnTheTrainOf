@@ -9,6 +9,7 @@ class Customer{
   color shade;
   Table sittingAt;
   int sittingTime;//time at which customer started sitting
+  boolean ordered;
   boolean leaving;
   
   Customer(String desc, int ID, int num, int sec, int xcor, int ycor){
@@ -89,7 +90,7 @@ class Customer{
   }
   
   Food order(){
-        System.out.println("HI i ordered");
+        ordered = true;
     return menu[(int)random((float)menu.length)];
 
   }
