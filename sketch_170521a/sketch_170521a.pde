@@ -100,7 +100,7 @@ void draw() {
   }
   else if (c.sittingAt != null){
     c.askForService();
-    if (dist(flo.x,flo.y,c.x,c.y) < 52){
+    if (dist(flo.x,flo.y,c.x,c.y) < 100){
       c.order();
     c.display();}
   }
