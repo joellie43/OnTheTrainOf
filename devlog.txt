@@ -47,19 +47,23 @@ LESSONS LEARNED
 --------------------------------------------------------------
 Joelle :: Started writing the basic code for the classes
 Nikita :: Worked on getting Table to display properly
-==============================================================
 
 2017-5-22
 --------------------------------------------------------------
 Joelle :: found open source code for waiter's star shape and implemented it
 Dimitriy :: implemented a humanoid shape for the method and began a method allowing the waiter to move according to clicks
-==============================================================
+Nikita :: Programmed clicked based movement for Flo.
 
 2017-5-25
 -------------------------------------------------------------
 Joelle & Nikita :: Fixed drag and drop issue with customers
-Dimitriy :: Made food move with Flo
+Dimitriy :: Made food move with Flo and arrayList of Foods that would shift if a Food is removed
+
+2017-5-26
+------------------------------------------------------------
+J
 
 2017-5-29
 -------------------------------------------------------------
-Joelle :: Allowed customers to order, added serveFood() to waiter
+Joelle :: Allowed customers to order, added serveFood() to waiter and allowed for clock 
+Nikita :: Implemented a clock and programmed customer p
