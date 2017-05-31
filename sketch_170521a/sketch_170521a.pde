@@ -109,11 +109,15 @@ void draw() {
   
   //if customer is seated
   else if (c.sittingAt != null){
-    //make exclamation point appear
-    c.askForService();
+    //make exclamation point appear 5 seconds after each interaction
+    if (millis() - c.sittingTime > 5000){
+    c.askForService();}
     //if waiter is 100 away from customer
-    if (dist(flo.x,flo.y,c.x,c.y) < 100){
+    if (dist(flo.x,flo.y,c.x,c.y) < 100 && c.ordered != true){
       c.order();}
+      else if (dist(flo.x,flo.y,c.x,c.y) < 100 && c.served != true){
+        //flo.serveFood(c);
+      }
   }
   //leave to the left of the screen
   if(c.leaving){

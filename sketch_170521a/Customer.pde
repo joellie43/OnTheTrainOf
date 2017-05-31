@@ -39,13 +39,13 @@ class Customer{
       //keep track of how long customer is sitting
       int timeDif = millis() - sittingTime;
       //if customer sat for more than 10 seconds, turn red and leave
-      if(timeDif > 10000){
+      if(timeDif > 15000){
         shade = color(255,0,0);
         leave();
       } 
-      //if customer sat for less than 10 seconds, gradually change from green to red
+      //if customer sat for less than 15 seconds, gradually change from green to red
       else{
-        shade = color(255 * timeDif/10000,255 - 255 * timeDif/10000,0);
+        shade = color(255 * timeDif/15000,255 - 255 * timeDif/15000,0);
       }
     }
     //if customer is not sitting
