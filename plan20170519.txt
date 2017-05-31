@@ -20,7 +20,7 @@ Tuesday, May 23
 ~Action~
 have a naviagtion mechanism to go around tables in the way and not through them
 priority queue that assists users by keeping track of the order in which customers are seated should be created
-priority qeue that helps the chef to keep track of the order in which food is ordered
+priority queue that helps the chef to keep track of the order in which food is ordered
 ~Due
 Thursday, May 25
 
@@ -49,6 +49,7 @@ Thursday, June 1
 
 ~Action~
 ensuring that the clock is always accurate, and does not delve into negative numbers
+implementing customer and food connection
 ~Due~
 Friday, June 2
 
