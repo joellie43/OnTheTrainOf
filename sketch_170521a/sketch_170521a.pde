@@ -3,18 +3,27 @@ import java.util.ArrayList;
 ArrayList<Table> tables; 
 Waiter flo;
 ArrayList<Food> foods;
-Food toServe; //initially null when no food is being carried by Flo
+ArrayList<Food> toServe; //initially null when no food is being carried by Flo
+ArrayList<Food> atTable;
 ArrayList<Customer> customers;
+Food toPlaceOnTable = null;
 Food dinner;
 
+boolean nearToFood;
+boolean overCustomer = false;
+boolean lockedCustomer = false;
 boolean lockedFood = false;
 Customer target;
 int customerSize = 300; //size of square encompassing customers
+int xOffset = 0;
+int yOffset = 0;
 boolean disableFlo = false;
 int initTime;
+int start;
 
 void setup() {
   size(960, 640);
+  start = second();
   tables = new ArrayList<Table>();
   tables.add(0, new Table(4,375,200));
   tables.add(1, new Table(4,765,500));
@@ -25,7 +34,9 @@ void setup() {
   customers.add(new Customer("businessman",1,4,10,50,100));
   target = null;
 
+  toServe = new ArrayList<Food>();
   foods = new ArrayList<Food>();
+  atTable = new ArrayList<Food>();
   for(int i = 0; i < 8; i++){
     /*String fDesc;
     int descNum = (int)random(3);
@@ -64,15 +75,54 @@ void draw() {
   for (Food f: foods){
      f.display();
   }
-  
+  for (Food x: toServe){
+    if((dist(flo.x, flo.y, 210, 40)==0)||(dist(flo.x, flo.y, 320, 84)>7)){
+       nearToFood = false; 
+    }
+    else{
+       nearToFood = true; 
+    }
+    
+     x.display();
+     //to test if it is stopped
+     int oldX = x.x;
+     int oldY = x.y;
+     //to move food with flo
+     x.x = flo.x;
+     x.y = flo.y;
+     //System.out.println("target x: " + flo.targetX + " target y: " + flo.targetY);
+     System.out.println("x: " + flo.x + " y: " + flo.y + " old x: " + oldX + " old y: " + oldY);
+     //System.out.println("food x: " + x.x + " food y: " + x.y);
+     //if((x.x == oldX && x.x != 210) && (x.y == oldY && x.y != 40)){
+       if(x.x == oldX && x.y == oldY && !(nearToFood) &&  x.x != 210 && x.y != 40){
+         System.out.println("" + nearToFood);
+         toPlaceOnTable = toServe.get(0);
+         lockedFood = false;
+         nearToFood = true;
+     }
+  }
+  if(toPlaceOnTable != null){
+     toServe.remove(0);
+     atTable.add(toPlaceOnTable);
+     toPlaceOnTable = null;
+  }
+  for (Food z: atTable){
+     for (Table t: tables){
+        if(dist(z.x, z.y, t.x, t.y) < 60){
+           z.x = t.x + 7;
+           z.y = t.y + 7;
+        }
+     }
+     z.display();
+  } 
   //****FLO'S CODE****
   
   //if flo is carrying food
-  if(toServe != null){
+  /*if(toServe != null){
      toServe.display();
      toServe.x = flo.x;
      toServe.y = flo.y;
-  }
+  }*/
   
   flo.move();
   flo.display();
@@ -90,8 +140,22 @@ void draw() {
     flo.targetY = 40;
   }
   
-  if(dist(flo.x,flo.y,300,40) < 50 && toServe == null){
+  /*if(dist(flo.x,flo.y,300,40) < 50 && toServe == null){
      serveFood();
+  }*/
+  
+  System.out.println("x:" + flo.x + " y:" + flo.y);
+  //System.out.println("dx:" + flo.dx + " dy:" + flo.dy);
+  if((dist(210, 40, flo.x, flo.y)<5)||(dist(320, 84, flo.x, flo.y)<7)
+  ||(dist(333, 72, flo.x, flo.y)<=5)||(dist(305, 95, flo.x, flo.y)<=5)
+  ||(dist(305, 85, flo.x, flo.y)<=5)||(dist(338, 78, flo.x, flo.y)<=5)){
+    
+    lockedFood = true;
+  }
+
+  if(lockedFood){
+     serveFood(foods);
+     lockedFood = false;
   }
   
   //*****************
@@ -164,7 +228,7 @@ void createFood(ArrayList foods, int i){
     foods.add(new Food(fDesc, (int)random(100), (int)random(10), i));
 }
 
-void serveFood(){
+void serveFood(ArrayList foods){
   Table targetTable = new Table(0, 0, 0);
     //take out the first food
      dinner = (Food)foods.remove(0);
@@ -180,7 +244,7 @@ void serveFood(){
             break;
         }
      }
-     toServe = dinner;
+     toServe.add(dinner);
 
    flo.targetX = targetTable.x;
    flo.targetY = targetTable.y;
