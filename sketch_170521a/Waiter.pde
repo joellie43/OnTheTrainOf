@@ -1,13 +1,14 @@
 class Waiter{
-  int x,y;
+  int x,y; //coordinates
   color shade; 
-  Check order;
-  Food inHands;
-  int madeSoFar;
+  Check order; //the check the waiter is holding to give to a customer
+  Food inHands; //the food the waiter is holding to give to a customer
+  int madeSoFar; //how much the waiter has made so far
   int state;
   int targetX;
   int targetY;
   float dx, dy;
+  
   Waiter(){
     x = 45;
     y = 45;
@@ -67,10 +68,12 @@ class Waiter{
   
   }
   
+  //to pick up food from counter
   void pickUpFood(Food foo){
     inHands = foo;
   }
   
+  //checks if customer ordered and if inHands matches customer's order
   boolean serveFood(Customer c){
     if (c.ordered && inHands == c.myCheck.getFood(0)){
       c.served = true;
@@ -79,7 +82,8 @@ class Waiter{
   }
   
   /*gives check to customer
-  customer pays, and then leaves*/
+  customer pays, madeSoFar is incremented,
+  and then customer leaves*/
   void giveCheck(Check c, Customer bob){
     madeSoFar += c.total;
     bob.leave();
