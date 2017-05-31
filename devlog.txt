@@ -74,5 +74,5 @@ Dmitriy :: Allowed for customer patience to reset when Flo arrives at table
 2017-5-30
 ------------------------------------------------------------
 Joelle ::
-Nikita :: Fixed clock bug so that clock doesn't reset every 60 seconds
+Nikita :: Fixed clock bug so that clock doesn't reset every 60 seconds// Got waiter to carry only one food at a time and pick up food from any angle
 Dmitriy ::
