@@ -3,7 +3,7 @@ import java.util.ArrayList;
 ArrayList<Table> tables;
 Waiter flo;
 ArrayList<Food> foods;
-ArrayList<Food> toServe;
+Food toServe;//initially null when no food is being carried by Flo
 ArrayList<Customer> customers;
 Food dinner;
 
@@ -30,8 +30,7 @@ void setup() {
   customers = new ArrayList<Customer>();
   customers.add(new Customer("businessman",1,4,10,50,100));
   target = null;
-  
-  toServe = new ArrayList<Food>();
+
   foods = new ArrayList<Food>();
   for(int i = 0; i < 8; i++){
     /*String fDesc;
@@ -68,10 +67,11 @@ void draw() {
   for (Food f: foods){
      f.display();
   }
-  for (Food x: toServe){
-     x.display();
-     x.x = flo.x;
-     x.y = flo.y;
+  //if flo is carrying food
+  if(toServe != null){
+     toServe.display();
+     toServe.x = flo.x;
+     toServe.y = flo.y;
   }
   //****FLO'S CODE****
   flo.move();
@@ -88,15 +88,8 @@ void draw() {
     flo.targetX = 300;
     flo.targetY = 40;
   }
-  if(dist(flo.x,flo.y,250,40) < 40){
-    
-    lockedFood = true;
-    System.out.println("x: " + flo.x + " y: " + flo.y);
-  }
-
-  if(lockedFood){
-     serveFood(foods);
-     lockedFood = false;
+  if(dist(flo.x,flo.y,300,40) < 50 && toServe == null){
+     serveFood();
   }
   //*****************
  //*****************
@@ -158,7 +151,7 @@ void createFood(ArrayList foods, int i){
     foods.add(new Food(fDesc, (int)random(100), (int)random(10), i));
 }
 
-void serveFood(ArrayList foods){
+void serveFood(){
   Table targetTable = new Table(0, 0, 0);
     //take out the first food
      dinner = (Food)foods.remove(0);
@@ -174,7 +167,7 @@ void serveFood(ArrayList foods){
             break;
         }
      }
-     toServe.add(dinner);
+     toServe = dinner;
 
    flo.targetX = targetTable.x;
    flo.targetY = targetTable.y;
