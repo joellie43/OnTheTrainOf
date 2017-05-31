@@ -39,3 +39,20 @@ Wednesday, May 31
 bug fixes, testing, 
 (if time permits)
 replacing standard shapes with actual images
+
+UPDATED PLAN: As of May 30:
+
+~Action~
+implementing food that is attachable to flo, and droppable at tables, from all locations
+~Due~
+Thursday, June 1
+
+~Action~
+ensuring that the clock is always accurate, and does not delve into negative numbers
+~Due~
+Friday, June 2
+
+~Action~
+implementing a scoreboard and a stack that logs the times and point values of each move
+~Due~
+Monday, June 5
