@@ -1,26 +1,20 @@
 import java.util.ArrayList;
 
-ArrayList<Table> tables;
+ArrayList<Table> tables; 
 Waiter flo;
 ArrayList<Food> foods;
-Food toServe;//initially null when no food is being carried by Flo
+Food toServe; //initially null when no food is being carried by Flo
 ArrayList<Customer> customers;
 Food dinner;
 
-boolean overCustomer = false;
-boolean lockedCustomer = false;
 boolean lockedFood = false;
 Customer target;
-int customerSize = 300;
-int xOffset = 0;
-int yOffset = 0;
+int customerSize = 300; //size of square encompassing customers
 boolean disableFlo = false;
 int initTime;
-int start;
 
 void setup() {
   size(960, 640);
-  start = second();
   tables = new ArrayList<Table>();
   tables.add(0, new Table(4,375,200));
   tables.add(1, new Table(4,765,500));
@@ -52,10 +46,12 @@ void setup() {
 
 void draw() {
   background(0);
+  
   //light pink top right corner
   fill(255,200,200);
   ellipse(960,0,300,300);
-  //timer at top right corner
+  
+  //counter at top right corner
   int timer = (millis() - initTime)/1000;
   textSize(32);
   fill(255);
@@ -64,16 +60,20 @@ void draw() {
   for (Table t : tables){
     t.display();
   }
+  
   for (Food f: foods){
      f.display();
   }
+  
+  //****FLO'S CODE****
+  
   //if flo is carrying food
   if(toServe != null){
      toServe.display();
      toServe.x = flo.x;
      toServe.y = flo.y;
   }
-  //****FLO'S CODE****
+  
   flo.move();
   flo.display();
   for(Table t: tables){
@@ -83,37 +83,46 @@ void draw() {
       flo.targetY = t.y;
     }
   }
+  
   //user clicks food station
   if(mousePressed&& !disableFlo && dist(mouseX,mouseY,300,40) < 50){
     flo.targetX = 300;
     flo.targetY = 40;
   }
+  
   if(dist(flo.x,flo.y,300,40) < 50 && toServe == null){
      serveFood();
   }
+  
   //*****************
- //*****************
- //**Customer Code**
+  
+ //**CUSTOMER'S CODE**
+ 
  for (Customer c : customers){
   c.display();
+  //if customer is not yet seated and mouse is within 55 from customer
   if (c.sittingAt == null && mousePressed && dist(mouseX,mouseY,c.x,c.y) < 55) {
     disableFlo = true;
     //keep track of customer
     target = c;
   }
+  
+  //if customer is seated
   else if (c.sittingAt != null){
+    //make exclamation point appear
     c.askForService();
+    //if waiter is 100 away from customer
     if (dist(flo.x,flo.y,c.x,c.y) < 100){
-      c.order();
-    c.display();}
+      c.order();}
   }
+  //leave to the left of the screen
   if(c.leaving){
     if(c.x > -50){
       c.x -= 5;
     }
   }
  }
- //while a customer is being dragged
+ //drag the customer along mouse
  if(mousePressed && target != null){
    target.x = mouseX;
    target.y = mouseY;
