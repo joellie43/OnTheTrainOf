@@ -84,7 +84,7 @@ void draw() {
     }
   }
   //user clicks food station
-  if(mousePressed&& !disableFlo && dist(mouseX,mouseY,300,40) < 40){
+  if(mousePressed&& !disableFlo && dist(mouseX,mouseY,300,40) < 50){
     flo.targetX = 300;
     flo.targetY = 40;
   }
