@@ -73,6 +73,6 @@ Dmitriy :: Allowed for customer patience to reset when Flo arrives at table
 
 2017-5-30
 ------------------------------------------------------------
-Joelle ::
-Nikita :: Fixed clock bug so that clock doesn't reset every 60 seconds// Got waiter to carry only one food at a time and pick up food from any angle
+Joelle :: Added more inline comments, uploaded uml.pdf, fixed timing with exclamation point to appear after 5 seconds of each interaction, slowed down customer's patience by 5 seconds
+Nikita :: Fixed clock bug so that clock doesn't reset every 60 seconds, got waiter to carry only one food at a time and pick up food from any angle
 Dmitriy ::
