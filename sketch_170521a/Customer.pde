@@ -2,7 +2,7 @@ import java.util.List;
 class Customer{
   Food[] menu = new Food[3];
   
-  int x,y;
+  int x,y; //coordinates 
   String description; //such as businessman, food critic, mother
   int id; //to keep track of customer
   int partyOf; //how many people in one party
@@ -10,7 +10,7 @@ class Customer{
   int timeOrdered; //mark the time at which customer ordered
   color shade;
   Table sittingAt;
-  int sittingTime;//time at which customer started sitting
+  int sittingTime; //time at which customer started sitting
   boolean ordered;
   boolean served;
   boolean leaving;
@@ -34,20 +34,25 @@ class Customer{
   }
   
   void display(){
-    PShape customer, c1, c2, c3, c4;
-    
+    //if customer is sitting at a table,
     if(sittingTime != -1){
+      //keep track of how long customer is sitting
       int timeDif = millis() - sittingTime;
+      //if customer sat for more than 10 seconds, turn red and leave
       if(timeDif > 10000){
         shade = color(255,0,0);
         leave();
       } 
+      //if customer sat for less than 10 seconds, gradually change from green to red
       else{
         shade = color(255 * timeDif/10000,255 - 255 * timeDif/10000,0);
       }
     }
+    //if customer is not sitting
     else {
       shade = color(0,255,0);}
+      
+    PShape customer, c1, c2, c3, c4;
       
     //waiter shape group
     customer = createShape(GROUP);
@@ -71,16 +76,16 @@ class Customer{
     shape(customer);
   }
   
-  //sets customers table and time they started sitting
+  //sets customer's table and time they started sitting
   void sit(Table t){
       sittingAt = t;
       sittingTime = millis();
   }
   
   //Precondition: sit(Table t) has been called, so sittingAt is != null
+  //make an exclamation point appear above table
   void askForService(){
-    
-    //make an exclamation point appear above table
+   
     PShape exclamation, top, bottom;
     exclamation = createShape(GROUP);
     
@@ -89,25 +94,25 @@ class Customer{
     top = createShape(ELLIPSE, sittingAt.x, sittingAt.y, 20, 55);
     top.setFill(color(256, 0, 0));
     
-    
     exclamation.addChild(top);
     exclamation.addChild(bottom);
     
-    shape(exclamation);
-    
+    shape(exclamation);   
   }
-  
+
+  //customer chooses a food randomly from the menu
+  //ordered is set to true to allow for further interactions
   Food order(){
     ordered = true;
     //add food to check
     myCheck.addFood(menu[(int)random(menu.length)]);
     sittingTime = millis();
     return myCheck.getFood(0);
-
   }
 
 
-  //walk towards exit and disappears
+  //sets leaving to true,
+  //through sketch, customer walks towards exit and disappears
   void leave(){
     leaving = true;
   }
