@@ -75,10 +75,10 @@ Dmitriy :: Allowed for customer patience to reset when Flo arrives at table
 ------------------------------------------------------------
 Joelle :: Added more inline comments, uploaded uml.pdf, fixed timing with exclamation point to appear after 5 seconds of each interaction, slowed down customer's patience by 5 seconds
 Nikita :: Fixed clock bug so that clock doesn't reset every 60 seconds, got waiter to pick up food from any angle
-Dmitriy ::
+Dmitriy :: Added additional spots from which food would be delivered to tables
 
 2017-5-31
 -----------------------------------------------------------
 Joelle :: Started working on making a customer generating mechanism
 Nikita :: Finished coding customer generating mechanism at home
-Dmitriy ::
+Dmitriy :: Ensured that food is delivered specifically to tables with customers
