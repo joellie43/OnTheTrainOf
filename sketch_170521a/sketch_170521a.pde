@@ -70,7 +70,7 @@ void draw() {
   background(0);
   
   //spawn customers every 8 sceconds
-  if(millis() > genTime + 1000 && customerCount < 4){
+  if(millis() > genTime + 8000 && customerCount < 4){
       System.out.println("added customer" + second());
       int x = 0;
       int tempI = 0;
