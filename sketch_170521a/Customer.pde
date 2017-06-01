@@ -11,10 +11,10 @@ class Customer{
   color shade;
   Table sittingAt;
   int sittingTime;//time at which customer started sitting
+  Food foodOrdered;
   boolean ordered;
   boolean served;
   boolean leaving;
-  Check myCheck;
   int genPos;
   
   Customer(String desc, int ID, int num, int sec, int newGenPos, int xcor, int ycor){
@@ -32,7 +32,6 @@ class Customer{
     sittingAt = null;
     sittingTime = -1;
     leaving = false;
-    myCheck = new Check();
   }
   
   void display(){
@@ -102,9 +101,9 @@ class Customer{
   Food order(){
     ordered = true;
     //add food to check
-    myCheck.addFood(menu[(int)random(menu.length)]);
+    foodOrdered = menu[(int)random(menu.length)];
     sittingTime = millis();
-    return myCheck.getFood(0);
+    return foodOrdered;
 
   }
 
