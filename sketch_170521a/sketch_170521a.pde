@@ -70,7 +70,7 @@ void draw() {
   background(0);
   
   //spawn customers every 8 sceconds
-  if(millis() > genTime + 8000 && customerCount < 4){
+  if(millis() > genTime + 1000 && customerCount < 4){
       System.out.println("added customer" + second());
       int x = 0;
       int tempI = 0;
@@ -244,6 +244,10 @@ void draw() {
  for (Customer c : customers){
   c.display();
   //if customer is not yet seated and mouse is within 55 from customer
+  for(int i : availablePos){
+  System.out.print(i + ";");
+  }
+  System.out.println();
   if (c.sittingAt == null && mousePressed && dist(mouseX,mouseY,c.x,c.y) < 55) {
     disableFlo = true;
     //keep track of customer
@@ -289,6 +293,11 @@ void mouseReleased(){
         customerCount -= 1;
         availablePos[target.genPos] = - availablePos[target.genPos];
       }
+    }
+    if(target.sittingAt == null){
+      //customer has not been dragged to a table, so put back in line
+      target.x = 50;
+      target.y = Math.abs(availablePos[target.genPos]);
     }
   }
   disableFlo = false;
