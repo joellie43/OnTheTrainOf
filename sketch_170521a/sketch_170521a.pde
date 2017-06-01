@@ -9,6 +9,13 @@ ArrayList<Customer> customers;
 Food toPlaceOnTable = null;
 Food dinner;
 
+boolean nearTo210;
+boolean nearTo320;
+boolean nearTo333;
+boolean nearTo3059;
+boolean nearTo3058;
+boolean nearTo334, nearTo338, nearTo340;
+
 boolean nearToFood;
 boolean overCustomer = false;
 boolean lockedCustomer = false;
@@ -102,11 +109,53 @@ void draw() {
      f.display();
   }
   for (Food x: toServe){
-    if((dist(flo.x, flo.y, 210, 40)==0)||(dist(flo.x, flo.y, 320, 84)>7)){
-       nearToFood = false; 
+    if(flo.x != 210 && flo.y != 40){
+       nearTo210 = false; 
     }
     else{
-       nearToFood = true; 
+       nearTo210 = true; 
+    }
+    if(dist(flo.x, flo.y, 320, 85)>7){
+       nearTo320 = false; 
+    }
+    else{
+       nearTo320 = true; 
+    }
+    if(dist(flo.x, flo.y, 333, 72)>=5){
+       nearTo333 = false; 
+    }
+    else{
+       nearTo333 = true; 
+    }
+    if(dist(flo.x, flo.y, 305, 95)>=5){
+       nearTo3059 = false; 
+    }
+    else{
+       nearTo3059 = true; 
+    }
+    if(dist(flo.x, flo.y, 305, 85)>=3){
+       nearTo3058 = false; 
+    }
+    else{
+       nearTo3058 = true; 
+    }
+    if(dist(flo.x, flo.y, 334, 50)>=3){
+       nearTo334 = false; 
+    }
+    else{
+       nearTo334 = true; 
+    }
+    if(dist(flo.x, flo.y, 338, 70)>=3){
+       nearTo338 = false; 
+    }
+    else{
+       nearTo338 = true; 
+    }
+    if(dist(flo.x, flo.y, 340, 52)>=3){
+       nearTo340 = false; 
+    }
+    else{
+       nearTo340 = true; 
     }
     
      x.display();
@@ -117,14 +166,17 @@ void draw() {
      x.x = flo.x;
      x.y = flo.y;
      //System.out.println("target x: " + flo.targetX + " target y: " + flo.targetY);
-     //System.out.println("x: " + flo.x + " y: " + flo.y + " old x: " + oldX + " old y: " + oldY);
+     System.out.println("x: " + flo.x + " y: " + flo.y + " old x: " + oldX + " old y: " + oldY);
      //System.out.println("food x: " + x.x + " food y: " + x.y);
      //if((x.x == oldX && x.x != 210) && (x.y == oldY && x.y != 40)){
-       if(x.x == oldX && x.y == oldY && !(nearToFood) &&  x.x != 210 && x.y != 40){
-         //System.out.println("" + nearToFood);
+       if(x.x == oldX && x.y == oldY && !(nearTo320) &&  !(nearTo210) 
+       && !(nearTo333) && !(nearTo3059) && !(nearTo3058) && !(nearTo334)
+       && !(nearTo338) && !(nearTo340)){
+         System.out.println("" + nearTo320);
          toPlaceOnTable = toServe.get(0);
          lockedFood = false;
-         nearToFood = true;
+         nearTo210 = nearTo320 = nearTo333 = nearTo3059 = nearTo3058 = nearTo334
+         = nearTo338 = nearTo340 = true;
      }
   }
   if(toPlaceOnTable != null){
@@ -173,8 +225,9 @@ void draw() {
   //System.out.println("x:" + flo.x + " y:" + flo.y);
   //System.out.println("dx:" + flo.dx + " dy:" + flo.dy);
   if((dist(210, 40, flo.x, flo.y)<5)||(dist(320, 84, flo.x, flo.y)<7)
-  ||(dist(333, 72, flo.x, flo.y)<=5)||(dist(305, 95, flo.x, flo.y)<=5)
-  ||(dist(305, 85, flo.x, flo.y)<=5)||(dist(338, 78, flo.x, flo.y)<=5)){
+  ||(dist(333, 72, flo.x, flo.y)<=3)||(dist(305, 95, flo.x, flo.y)<=3)
+  ||(dist(305, 85, flo.x, flo.y)<=3)||(dist(338, 78, flo.x, flo.y)<=3)
+  ||(dist(340, 52, flo.x, flo.y)<=3)||(dist(334, 50, flo.x, flo.y)<=3)){
     
     lockedFood = true;
   }
@@ -267,10 +320,12 @@ void serveFood(ArrayList foods){
      //replenish the food queue
      createFood(foods, 7); //final index of the arrayList
      for(Table t: tables){
-        if(!(t.served)){
-            targetTable = t;
-            t.served = true;
-            break;
+        for(Customer c: customers){
+          if(c.sittingAt != null && c.sittingAt.equals(t) && !(t.served)){
+              targetTable = t;
+              t.served = true;
+              break;
+          }
         }
      }
      toServe.add(dinner);
