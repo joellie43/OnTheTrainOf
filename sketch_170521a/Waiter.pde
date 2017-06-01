@@ -75,7 +75,7 @@ class Waiter{
   
   //checks if customer ordered and if inHands matches customer's order
   boolean serveFood(Customer c){
-    if (c.ordered && inHands == c.myCheck.getFood(0)){
+    if (c.ordered && inHands == c.foodOrdered){
       c.served = true;
     c.sittingTime = millis();}
       return c.served;
