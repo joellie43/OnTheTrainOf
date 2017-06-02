@@ -6,7 +6,6 @@ class Table{
   int numSeats;
   boolean empty, served;
   
-  
   Table(int seats, int xcor, int ycor){
     float r = random(256);
     float g = random(256);

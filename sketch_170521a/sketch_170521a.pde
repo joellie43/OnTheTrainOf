@@ -20,6 +20,7 @@ int yOffset = 0;
 boolean disableFlo = false;
 int initTime;
 int genTime;
+//int foodTimer;
 int start;
 int goal = 50;
 int customerCount = 0; //how many customers are waiting to be seated
@@ -46,6 +47,7 @@ void setup() {
 
   initTime = millis();//roughly 370-450 by end of setup
   genTime = millis();
+  //foodTimer = millis();
 }
 
 void draw() {
@@ -114,6 +116,7 @@ void draw() {
   }
   if(toPlaceOnTable != null){
      toServe.remove(0);
+     toPlaceOnTable.foodTimer = millis();
      atTable.add(toPlaceOnTable);
      toPlaceOnTable = null;
   }
@@ -124,7 +127,9 @@ void draw() {
            z.y = t.y + 7;
         }
      }
-     z.display();
+     if(millis() - z.foodTimer < 5000){
+       z.display();
+     }
   } 
   //****FLO'S CODE****
   

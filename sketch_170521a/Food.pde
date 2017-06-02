@@ -5,6 +5,7 @@ class Food{
   int position;
   int x, y;
   color shade;
+  int foodTimer = 0;
   
   Food(String fDesc, int fCost, int fSec, int pos){
      description = fDesc;
