@@ -17,6 +17,7 @@ class Customer{
   boolean served;
   boolean leaving;
   int genPos;
+  int blueShift; //b compnent of customer's rgb for personality
   
   Customer(String desc, int ID, int num, int sec, int newGenPos, int xcor, int ycor){
     menu[0] = new Food("sausage",10,5000,0);
@@ -26,6 +27,7 @@ class Customer{
     id = ID; 
     partyOf = num;
     timerSec = sec;
+    blueShift = (int)(Math.random()*256);
     shade = color(0, 255, 0);
     x = xcor;
     y = ycor;
@@ -39,18 +41,22 @@ class Customer{
   void display(){
     PShape customer, c1, c2, c3, c4;
     
-    if(sittingTime != -1){
+    if(sittingAt != null){
       int timeDif = millis() - sittingTime;
       if(timeDif > 10000){
         shade = color(255,0,0);
         leave();
       } 
       else{
-        shade = color(255 * timeDif/10000,255 - 255 * timeDif/10000,0);
+        shade = color(255 * timeDif/10000,255 - 255 * timeDif/10000,blueShift - 255*timeDif/10000);
       }
     }
+    else if(leaving){
+      shade = color(255,0,0);
+    }
     else {
-      shade = color(0,255,0);}
+      shade = color(0,255,blueShift);
+    }
       
     //waiter shape group
     customer = createShape(GROUP);
