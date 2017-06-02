@@ -76,6 +76,7 @@ class Customer{
   
   //sets customers table and time they started sitting
   void sit(Table t){
+      t.empty = false;
       sittingAt = t;
       sittingTime = millis();
   }
@@ -110,7 +111,11 @@ class Customer{
 
 
   //walk towards exit and disappears
+  //precondition: sittingAt isnt null
   void leave(){
+    if(sittingAt != null){
+      sittingAt.empty = true;
+    }
     leaving = true;
     sittingAt = null;
   }
