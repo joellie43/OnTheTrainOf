@@ -9,17 +9,10 @@ ArrayList<Customer> customers;
 Food toPlaceOnTable = null;
 Food dinner;
 
-boolean nearTo210;
-boolean nearTo320;
-boolean nearTo333;
-boolean nearTo3059;
-boolean nearTo3058;
-boolean nearTo334, nearTo338, nearTo340;
-
 boolean nearToFood;
 boolean overCustomer = false;
 boolean lockedCustomer = false;
-boolean lockedFood = false;
+boolean lockedFood = true;
 Customer target;
 int customerSize = 300; //size of square encompassing customers
 int xOffset = 0;
@@ -47,21 +40,7 @@ void setup() {
   toServe = new ArrayList<Food>();
   foods = new ArrayList<Food>();
   atTable = new ArrayList<Food>();
-  for(int i = 0; i < 8; i++){
-    /*String fDesc;
-    int descNum = (int)random(3);
-    if(descNum == 0){
-       fDesc = "Sausage";
-    }
-    else if(descNum == 1){
-       fDesc = "Ham"; 
-    }
-    else{
-       fDesc = "Lettuce"; 
-    }
-    foods.add(0, new Food(fDesc, (int)random(100), (int)random(10), i));*/
-    createFood(foods, i);
-  }
+
   initTime = millis();//roughly 370-450 by end of setup
   genTime = millis();
 }
@@ -81,7 +60,10 @@ void draw() {
           tempI = i;
         }
       }
-      customers.add(new Customer("businessman",1,4,10,tempI,50,x));
+      Customer c = new Customer("businessman",1,4,10,tempI,50,x);
+      customers.add(c);
+      System.out.println(c.foodOrdered.description);
+      createFood(c.foodOrdered, foods.size() + 1);;
       customerCount += 1;
       availablePos[tempI] = - availablePos[tempI];
       genTime = millis();
@@ -107,77 +89,24 @@ void draw() {
   }
   
   for (Food f: foods){
-     f.display();
+     try{
+       f.display();
+     }
+     catch(NullPointerException e){}
   }
   for (Food x: toServe){
-    if(flo.x != 210 && flo.y != 40){
-       nearTo210 = false; 
-    }
-    else{
-       nearTo210 = true; 
-    }
-    if(dist(flo.x, flo.y, 320, 85)>7){
-       nearTo320 = false; 
-    }
-    else{
-       nearTo320 = true; 
-    }
-    if(dist(flo.x, flo.y, 333, 72)>=5){
-       nearTo333 = false; 
-    }
-    else{
-       nearTo333 = true; 
-    }
-    if(dist(flo.x, flo.y, 305, 95)>=5){
-       nearTo3059 = false; 
-    }
-    else{
-       nearTo3059 = true; 
-    }
-    if(dist(flo.x, flo.y, 305, 85)>=3){
-       nearTo3058 = false; 
-    }
-    else{
-       nearTo3058 = true; 
-    }
-    if(dist(flo.x, flo.y, 334, 50)>=3){
-       nearTo334 = false; 
-    }
-    else{
-       nearTo334 = true; 
-    }
-    if(dist(flo.x, flo.y, 338, 70)>=3){
-       nearTo338 = false; 
-    }
-    else{
-       nearTo338 = true; 
-    }
-    if(dist(flo.x, flo.y, 340, 52)>=3){
-       nearTo340 = false; 
-    }
-    else{
-       nearTo340 = true; 
-    }
     
      x.display();
      //to test if it is stopped
      int oldX = x.x;
      int oldY = x.y;
      //to move food with flo
-     x.x = flo.x;
-     x.y = flo.y;
-     //System.out.println("target x: " + flo.targetX + " target y: " + flo.targetY);
-     //System.out.println("x: " + flo.x + " y: " + flo.y + " old x: " + oldX + " old y: " + oldY);
-     //System.out.println("food x: " + x.x + " food y: " + x.y);
-     //if((x.x == oldX && x.x != 210) && (x.y == oldY && x.y != 40)){
-       if(x.x == oldX && x.y == oldY && !(nearTo320) &&  !(nearTo210) 
-       && !(nearTo333) && !(nearTo3059) && !(nearTo3058) && !(nearTo334)
-       && !(nearTo338) && !(nearTo340)){
-         //System.out.println("" + nearTo320);
+     x.x = flo.x - 10;
+     x.y = flo.y + 10;
+       if(dist(x.x, x.y, 365, 209) < 5 || dist(x.x, x.y, 365, 509) < 5 
+       || dist(x.x, x.y, 755, 209) < 5 || dist(x.x, x.y, 755, 509) < 5){
          toPlaceOnTable = toServe.get(0);
          lockedFood = false;
-         nearTo210 = nearTo320 = nearTo333 = nearTo3059 = nearTo3058 = nearTo334
-         = nearTo338 = nearTo340 = true;
      }
   }
   if(toPlaceOnTable != null){
@@ -188,7 +117,7 @@ void draw() {
   for (Food z: atTable){
      for (Table t: tables){
         if(dist(z.x, z.y, t.x, t.y) < 60){
-           z.x = t.x + 7;
+           z.x = t.x - 40;
            z.y = t.y + 7;
         }
      }
@@ -223,19 +152,10 @@ void draw() {
      serveFood();
   }*/
   
-  //System.out.println("x:" + flo.x + " y:" + flo.y);
-  //System.out.println("dx:" + flo.dx + " dy:" + flo.dy);
-  if((dist(210, 40, flo.x, flo.y)<5)||(dist(320, 84, flo.x, flo.y)<7)
-  ||(dist(333, 72, flo.x, flo.y)<=3)||(dist(305, 95, flo.x, flo.y)<=3)
-  ||(dist(305, 85, flo.x, flo.y)<=3)||(dist(338, 78, flo.x, flo.y)<=3)
-  ||(dist(340, 52, flo.x, flo.y)<=3)||(dist(334, 50, flo.x, flo.y)<=3)){
-    
-    lockedFood = true;
-  }
-
-  if(lockedFood){
-     serveFood(foods);
-     lockedFood = false;
+  if(dist(flo.x, flo.y, 300, 40) == 0 && toServe.size() == 0){
+    //lockedFood = true;
+    serveFood(foods);
+    //lockedFood = false;
   }
   
   //*****************
@@ -327,30 +247,25 @@ void mouseReleased(){
   target = null;
 }
 
-void createFood(ArrayList foods, int i){
-    String fDesc;
-    int descNum = (int)random(3);
-    if(descNum == 0){
-       fDesc = "Sausage";
-    }
-    else if(descNum == 1){
-       fDesc = "Ham"; 
-    }
-    else{
-       fDesc = "Lettuce"; 
-    }
-    foods.add(new Food(fDesc, (int)random(100), (int)random(10), i));
+void createFood(Food f, int i){
+    f.position = i;
+    foods.add(f);
 }
 
 void serveFood(ArrayList foods){
   Table targetTable = new Table(0, 0, 0);
     //take out the first food
-     dinner = (Food)foods.remove(0);
+     try{
+       dinner = (Food)foods.remove(0);
+     }
+     catch(IndexOutOfBoundsException e){
+       return;
+     }
      for(Object f: foods){
         ((Food)f).position -= 1; 
      }
      //replenish the food queue
-     createFood(foods, 7); //final index of the arrayList
+     //createFood(foods, foods.size()-1); //final index of the arrayList
      for(Table t: tables){
         for(Customer c: customers){
           if(c.sittingAt != null && c.sittingAt.equals(t) && !(t.served)){
@@ -362,8 +277,8 @@ void serveFood(ArrayList foods){
      }
      toServe.add(dinner);
 
-   flo.targetX = targetTable.x;
-   flo.targetY = targetTable.y;
-   dinner.x = flo.x;
-   dinner.y = flo.y;
+   //flo.targetX = targetTable.x;
+   //flo.targetY = targetTable.y;
+   dinner.x = 300;
+   dinner.y = 40;
 }

@@ -13,10 +13,10 @@ class Food{
      position = pos;
      x = 300;
      y = 40;
-     if(description.equals("Sausage")){
+     if(description.equals("sausage")){
         shade = color(125, 10, 10);
      }
-     else if(description.equals("Ham")){
+     else if(description.equals("ham")){
         shade = color(200, 0, 100); 
      }
      else{

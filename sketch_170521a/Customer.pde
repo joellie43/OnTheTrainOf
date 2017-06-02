@@ -33,6 +33,7 @@ class Customer{
     sittingAt = null;
     sittingTime = -1;
     leaving = false;
+    foodOrdered = menu[(int)random(3)];
   }
   
   void display(){

@@ -55,9 +55,13 @@ class Waiter{
         float D = dist(x,y,targetX,targetY);
         dx = 10*(targetX-x)/D;
         dy = 10*(targetY-y)/D;
-        if(D > 45){//continue moving towards target
+        if(D > 5){//continue moving towards target
           x += dx;
           y += dy;
+        }
+        else if(D > 0){
+           x = targetX;
+           y = targetY;
         }
         else{targetX = -1; targetY = -1;}//target reached
       }
