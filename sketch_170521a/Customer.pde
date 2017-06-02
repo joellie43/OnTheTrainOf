@@ -15,7 +15,7 @@ class Customer{
   boolean askingForService;
   boolean ordered;
   boolean served;
-  boolean leaving;
+  int leaving;//-1 if not leaving, 0 if leaving angry, 1 if leaving happy
   int genPos;
   int blueShift; //b compnent of customer's rgb for personality
   int greenShift; //g component of customer's rgb for personaliy
@@ -37,29 +37,29 @@ class Customer{
     genPos = newGenPos;
     sittingAt = null;
     sittingTime = -1;
-    leaving = false;
+    leaving = -1;//not leaving state
     foodOrdered = menu[(int)random(3)];
   }
   
   void display(){
     PShape customer, c1, c2, c3, c4;
     
-    if(sittingAt != null){
+    if(sittingAt != null && leaving == -1){//if sitting at a tabl
       int timeDif = millis() - sittingTime;
       if(timeDif > 10000){
         shade = color(255,0,0);
-        leave();
-      } 
+        leave(0);//leave angrily
+      }
       else{
         shade = color(255 * timeDif/10000,
                       greenShift - greenShift * timeDif/10000,
                       blueShift - blueShift *timeDif/10000);
       }
     }
-    else if(leaving){
+    else if(leaving == 0){ //leaving angry
       shade = color(255,0,0);
     }
-    else {
+    else{ //leaving happy
       shade = color(0,greenShift,blueShift);
     }
       
@@ -122,12 +122,12 @@ class Customer{
 
 
   //walk towards exit and disappears
-  //precondition: sittingAt isnt null
-  void leave(){
+  //precondition: sittingAt isnt null, newLeaving is 0 or 1
+  void leave(int newLeaving){
     if(sittingAt != null){
       sittingAt.empty = true;
     }
-    leaving = true;
+    leaving = newLeaving;
     sittingAt = null;
   }
 }
