@@ -10,13 +10,9 @@ Food toPlaceOnTable = null;
 Food dinner;
 
 boolean nearToFood;
-boolean overCustomer = false;
-boolean lockedCustomer = false;
 boolean lockedFood = true;
 Customer target;
 int customerSize = 300; //size of square encompassing customers
-int xOffset = 0;
-int yOffset = 0;
 boolean disableFlo = false;
 int initTime;
 int genTime;
@@ -62,8 +58,6 @@ void draw() {
       }
       Customer c = new Customer("businessman",1,4,10,tempI,50,x);
       customers.add(c);
-      System.out.println(c.foodOrdered.description);
-      createFood(c.foodOrdered, foods.size() + 1);;
       customerCount += 1;
       availablePos[tempI] = - availablePos[tempI];
       genTime = millis();
@@ -188,6 +182,8 @@ void draw() {
     if (dist(flo.x,flo.y,c.x,c.y) < 100){
       if (c.ordered != true && c.askingForService){
       c.order();
+      System.out.println(c.foodOrdered.description);
+      createFood(c.foodOrdered, foods.size() + 1);
     //System.out.println("ordered");
   }
     //make sure waiter has moved away first and then come back
@@ -215,6 +211,15 @@ void draw() {
    target.y = mouseY;
  }
  
+ //check if time is up
+  if (millis() >= 60000){
+    fill(0,0,0); 
+    rect(0,0,960,640);
+    textSize(100);
+    fill(255);
+    text("You lose!",230,320);
+  }
+ 
  //check if waiter reached goal
  if (flo.madeSoFar >= goal){
    fill(0,0,0); 
@@ -223,6 +228,7 @@ void draw() {
   fill(255);
   text("You won!",230,320);
   }
+  
  //***************
 }//end of draw()
 
