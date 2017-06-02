@@ -16,6 +16,7 @@ OBSTACLES OVERCOME
 UNRESOLVED 
 *Making Waiter go around table and not through it
 *Making customers reset to green after each interaction
+*Making sure no two customers are at the same table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED
@@ -82,3 +83,8 @@ Dmitriy :: Added additional spots from which food would be delivered to tables
 Joelle :: Started working on making a customer generating mechanism
 Nikita :: Finished coding customer generating mechanism at home
 Dmitriy :: Ensured that food is delivered specifically to tables with customers
+
+2017-6-1
+-----------------------------------------------------------
+Joelle :: Customers are able to be correctly ask for service, be served, pay, and leave; added "winning screen" for when goal is reached
+
