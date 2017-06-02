@@ -28,7 +28,7 @@ boolean disableFlo = false;
 int initTime;
 int genTime;
 int start;
-int goal = 100;
+int goal = 50;
 int customerCount = 0; //how many customers are waiting to be seated
 int[] availablePos = {150,300,450,600};
 
@@ -69,9 +69,10 @@ void setup() {
 void draw() {
   background(0);
   
+  
   //spawn customers every 8 sceconds
-  if(millis() > genTime + 8000 && customerCount < 4){
-      System.out.println("added customer" + second());
+  if(millis() > genTime + 3000 && customerCount < 4){
+      //System.out.println("added customer" + second());
       int x = 0;
       int tempI = 0;
       for(int i = 0 ; i < 4; i += 1){
@@ -166,13 +167,13 @@ void draw() {
      x.x = flo.x;
      x.y = flo.y;
      //System.out.println("target x: " + flo.targetX + " target y: " + flo.targetY);
-     System.out.println("x: " + flo.x + " y: " + flo.y + " old x: " + oldX + " old y: " + oldY);
+     //System.out.println("x: " + flo.x + " y: " + flo.y + " old x: " + oldX + " old y: " + oldY);
      //System.out.println("food x: " + x.x + " food y: " + x.y);
      //if((x.x == oldX && x.x != 210) && (x.y == oldY && x.y != 40)){
        if(x.x == oldX && x.y == oldY && !(nearTo320) &&  !(nearTo210) 
        && !(nearTo333) && !(nearTo3059) && !(nearTo3058) && !(nearTo334)
        && !(nearTo338) && !(nearTo340)){
-         System.out.println("" + nearTo320);
+         //System.out.println("" + nearTo320);
          toPlaceOnTable = toServe.get(0);
          lockedFood = false;
          nearTo210 = nearTo320 = nearTo333 = nearTo3059 = nearTo3058 = nearTo334
@@ -245,27 +246,41 @@ void draw() {
   c.display();
   //if customer is not yet seated and mouse is within 55 from customer
   for(int i : availablePos){
-  System.out.print(i + ";");
+  //System.out.print(i + ";");
   }
-  System.out.println();
+  //System.out.println();
   if (c.sittingAt == null && mousePressed && dist(mouseX,mouseY,c.x,c.y) < 55) {
     disableFlo = true;
     //keep track of customer
     target = c;
   }
   
-  //if customer is seated
-  else if (c.sittingAt != null){
+  //while customer is seated
+  if (c.sittingAt != null){
     //make exclamation point appear 5 seconds after each interaction
     if (millis() - c.sittingTime > 5000){
     c.askForService();
-    }
+    c.askingForService = true;
+  //System.out.println("exclamation appeared");
+}
+    //exclamation point appears
     //if waiter is 100 away from customer
-    if (dist(flo.x,flo.y,c.x,c.y) < 100 && c.ordered != true){
-      c.order();}
-      else if (dist(flo.x,flo.y,c.x,c.y) < 100 && c.served != true){
+    if (dist(flo.x,flo.y,c.x,c.y) < 100){
+      if (c.ordered != true && c.askingForService){
+      c.order();
+    //System.out.println("ordered");
+  }
+    //make sure waiter has moved away first and then come back
+    if (c.ordered && c.askingForService){
         flo.serveFood(c);
       }
+      //lastly pay and leave
+    if (c.served && c.askingForService){
+      flo.madeSoFar += c.foodOrdered.cost;
+      //System.out.println("paid");
+      c.leave();
+    c.sittingAt = null;}
+    }
   }
   //leave to the left of the screen
   if(c.leaving){
@@ -280,6 +295,14 @@ void draw() {
    target.y = mouseY;
  }
  
+ //check if waiter reached goal
+ if (flo.madeSoFar >= goal){
+   fill(0,0,0); 
+   rect(0,0,960,640);
+   textSize(100);
+  fill(255);
+  text("You won!",230,320);
+  }
  //***************
 }//end of draw()
 

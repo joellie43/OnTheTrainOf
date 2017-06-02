@@ -12,6 +12,7 @@ class Customer{
   Table sittingAt;
   int sittingTime;//time at which customer started sitting
   Food foodOrdered;
+  boolean askingForService;
   boolean ordered;
   boolean served;
   boolean leaving;
@@ -104,12 +105,12 @@ class Customer{
     foodOrdered = menu[(int)random(menu.length)];
     sittingTime = millis();
     return foodOrdered;
-
   }
 
 
   //walk towards exit and disappears
   void leave(){
     leaving = true;
+    sittingAt = null;
   }
 }

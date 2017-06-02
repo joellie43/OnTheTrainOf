@@ -1,7 +1,6 @@
 class Waiter{
   int x,y; //coordinates
   color shade; 
-  Check order; //the check the waiter is holding to give to a customer
   Food inHands; //the food the waiter is holding to give to a customer
   int madeSoFar; //how much the waiter has made so far
   int state;
@@ -75,17 +74,9 @@ class Waiter{
   
   //checks if customer ordered and if inHands matches customer's order
   boolean serveFood(Customer c){
-    if (c.ordered && inHands == c.foodOrdered){
+    //if (c.ordered && inHands == c.foodOrdered){
       c.served = true;
-    c.sittingTime = millis();}
+    c.sittingTime = millis();//}
       return c.served;
-  }
-  
-  /*gives check to customer
-  customer pays, madeSoFar is incremented,
-  and then customer leaves*/
-  void giveCheck(Check c, Customer bob){
-    madeSoFar += c.total;
-    bob.leave();
   }
 }
