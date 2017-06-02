@@ -57,7 +57,7 @@ void draw() {
       //System.out.println("added customer" + second());
       int x = 0;
       int tempI = 0;
-      for(int i = 3 ; i >= 0; i -= 1){
+      for(int i = 0 ; i < 4; i += 1){
         if(availablePos[i] > 0){
           x = availablePos[i];
           tempI = i;
@@ -242,7 +242,16 @@ void mouseReleased(){
       if(dist(target.x,target.y,t.x,t.y) < 55 && t.empty){
         target.sit(t);
         customerCount -= 1;
-        availablePos[target.genPos] = - availablePos[target.genPos];
+        availablePos[target.genPos] *= -1;
+        //shifts all customers in line down by one
+        for(Customer c : customers){
+          if(c.sittingAt == null && !c.leaving){
+            availablePos[c.genPos] *= -1;
+            c.genPos += 1;
+            availablePos[c.genPos] *= -1;
+            c.y += 150;
+          }
+        }//end of custoemr shifting for
       }
     }
     if(target.sittingAt == null){
