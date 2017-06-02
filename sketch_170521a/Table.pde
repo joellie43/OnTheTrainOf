@@ -4,7 +4,7 @@ class Table{
   int x,y;
   color shade;
   int numSeats;
-  boolean capacity, served;
+  boolean empty, served;
   
   
   Table(int seats, int xcor, int ycor){
@@ -15,7 +15,7 @@ class Table{
     x =xcor;
     y= ycor;
     numSeats = seats;
-    capacity = false;
+    empty = true;
     served = false;
   }
   
