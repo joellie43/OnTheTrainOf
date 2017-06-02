@@ -231,7 +231,7 @@ void mouseReleased(){
   //check if customer was dropped off at a table
   if(target != null){
     for(Table t: tables){
-      if(dist(target.x,target.y,t.x,t.y) < 55){
+      if(dist(target.x,target.y,t.x,t.y) < 55 && t.empty){
         target.sit(t);
         customerCount -= 1;
         availablePos[target.genPos] = - availablePos[target.genPos];
