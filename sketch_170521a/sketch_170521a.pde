@@ -10,9 +10,13 @@ Food toPlaceOnTable = null;
 Food dinner;
 
 boolean nearToFood;
+boolean overCustomer = false;
+boolean lockedCustomer = false;
 boolean lockedFood = true;
 Customer target;
 int customerSize = 300; //size of square encompassing customers
+int xOffset = 0;
+int yOffset = 0;
 boolean disableFlo = false;
 int initTime;
 int genTime;
@@ -20,6 +24,7 @@ int start;
 int goal = 50;
 int customerCount = 0; //how many customers are waiting to be seated
 int[] availablePos = {150,300,450,600};
+//ArrayList<Integer> prioritySideBar;
 
 void setup() {
   size(960, 640);
@@ -36,6 +41,8 @@ void setup() {
   toServe = new ArrayList<Food>();
   foods = new ArrayList<Food>();
   atTable = new ArrayList<Food>();
+  
+  //prioritySideBar = new ArrayList<Integer>();
 
   initTime = millis();//roughly 370-450 by end of setup
   genTime = millis();
@@ -50,7 +57,7 @@ void draw() {
       //System.out.println("added customer" + second());
       int x = 0;
       int tempI = 0;
-      for(int i = 0 ; i < 4; i += 1){
+      for(int i = 3 ; i >= 0; i -= 1){
         if(availablePos[i] > 0){
           x = availablePos[i];
           tempI = i;
@@ -58,6 +65,8 @@ void draw() {
       }
       Customer c = new Customer("businessman",1,4,10,tempI,50,x);
       customers.add(c);
+      System.out.println(c.foodOrdered.description);
+      createFood(c.foodOrdered, foods.size() + 1);;
       customerCount += 1;
       availablePos[tempI] = - availablePos[tempI];
       genTime = millis();
@@ -155,7 +164,12 @@ void draw() {
   //*****************
   
  //**CUSTOMER'S CODE**
- 
+  int lowestPos = -1;
+  for(int i = 0; i < 4; i ++){
+    if(availablePos[i] < 0){
+      lowestPos = i;
+    }
+  }
  for (Customer c : customers){
   c.display();
   //if customer is not yet seated and mouse is within 55 from customer
@@ -163,7 +177,7 @@ void draw() {
   //System.out.print(i + ";");
   }
   //System.out.println();
-  if (c.sittingAt == null && mousePressed && dist(mouseX,mouseY,c.x,c.y) < 55) {
+  if(lowestPos == c.genPos && c.sittingAt == null && mousePressed && dist(mouseX,mouseY,c.x,c.y) < 55) {
     disableFlo = true;
     //keep track of customer
     target = c;
@@ -182,8 +196,6 @@ void draw() {
     if (dist(flo.x,flo.y,c.x,c.y) < 100){
       if (c.ordered != true && c.askingForService){
       c.order();
-      System.out.println(c.foodOrdered.description);
-      createFood(c.foodOrdered, foods.size() + 1);
     //System.out.println("ordered");
   }
     //make sure waiter has moved away first and then come back
@@ -211,15 +223,6 @@ void draw() {
    target.y = mouseY;
  }
  
- //check if time is up
-  if (millis() >= 60000){
-    fill(0,0,0); 
-    rect(0,0,960,640);
-    textSize(100);
-    fill(255);
-    text("You lose!",230,320);
-  }
- 
  //check if waiter reached goal
  if (flo.madeSoFar >= goal){
    fill(0,0,0); 
@@ -228,7 +231,6 @@ void draw() {
   fill(255);
   text("You won!",230,320);
   }
-  
  //***************
 }//end of draw()
 
