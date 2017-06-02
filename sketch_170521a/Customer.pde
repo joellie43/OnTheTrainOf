@@ -18,6 +18,8 @@ class Customer{
   boolean leaving;
   int genPos;
   int blueShift; //b compnent of customer's rgb for personality
+  int greenShift; //g component of customer's rgb for personaliy
+  //no redShift red is designated for angry customers only
   
   Customer(String desc, int ID, int num, int sec, int newGenPos, int xcor, int ycor){
     menu[0] = new Food("sausage",10,5000,0);
@@ -28,7 +30,8 @@ class Customer{
     partyOf = num;
     timerSec = sec;
     blueShift = (int)(Math.random()*256);
-    shade = color(0, 255, 0);
+    greenShift = (int)(Math.random()*256);
+    shade = color(0, greenShift, blueShift);
     x = xcor;
     y = ycor;
     genPos = newGenPos;
@@ -48,14 +51,16 @@ class Customer{
         leave();
       } 
       else{
-        shade = color(255 * timeDif/10000,255 - 255 * timeDif/10000,blueShift - 255*timeDif/10000);
+        shade = color(255 * timeDif/10000,
+                      greenShift - greenShift * timeDif/10000,
+                      blueShift - blueShift *timeDif/10000);
       }
     }
     else if(leaving){
       shade = color(255,0,0);
     }
     else {
-      shade = color(0,255,blueShift);
+      shade = color(0,greenShift,blueShift);
     }
       
     //waiter shape group
