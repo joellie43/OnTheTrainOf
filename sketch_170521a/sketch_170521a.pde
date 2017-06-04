@@ -224,6 +224,15 @@ void draw() {
  }
  
  //check if waiter reached goal
+ if (second() >= 180){
+   fill(0,0,0); 
+   rect(0,0,960,640);
+   textSize(100);
+  fill(255);
+  text("You lose!",230,320);
+  }
+ 
+ //check if waiter reached goal
  if (flo.madeSoFar >= goal){
    fill(0,0,0); 
    rect(0,0,960,640);
