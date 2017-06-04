@@ -88,3 +88,6 @@ Dmitriy :: Ensured that food is delivered specifically to tables with customers
 -----------------------------------------------------------
 Joelle :: Customers are able to be correctly ask for service, be served, pay, and leave; added "winning screen" for when goal is reached
 
+2017-6-4
+-----------------------------------------------------------
+Joelle :: fixed food code with placing food at tables; added exceptions to when customer leaves angrily; added "losing screen" when 3 minutes passes
