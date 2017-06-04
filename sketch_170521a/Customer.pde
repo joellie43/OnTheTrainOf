@@ -10,11 +10,12 @@ class Customer{
   int timeOrdered; //mark the time at which customer ordered
   color shade;
   Table sittingAt;
-  int sittingTime;//time at which customer started sitting
+  int interactionTime;//time at which waiter last interacted with customer
   Food foodOrdered;
   boolean askingForService;
   boolean ordered;
   boolean served;
+  boolean doneEating;
   int leaving;//-1 if not leaving, 0 if leaving angry, 1 if leaving happy
   int genPos;
   int blueShift; //b compnent of customer's rgb for personality
@@ -36,7 +37,7 @@ class Customer{
     y = ycor;
     genPos = newGenPos;
     sittingAt = null;
-    sittingTime = -1;
+    interactionTime = -1;
     leaving = -1;//not leaving state
     foodOrdered = menu[(int)random(3)];
   }
@@ -44,9 +45,9 @@ class Customer{
   void display(){
     PShape customer, c1, c2, c3, c4;
     
-    if(sittingAt != null && leaving == -1){//if sitting at a tabl
-      int timeDif = millis() - sittingTime;
-      if(timeDif > 10000){
+    if(sittingAt != null && leaving == -1){//if sitting at a table
+      int timeDif = millis() - interactionTime;
+      if(timeDif > 15000){
         shade = color(255,0,0);
         leave(0);//leave angrily
       }
@@ -89,7 +90,7 @@ class Customer{
   void sit(Table t){
       t.empty = false;
       sittingAt = t;
-      sittingTime = millis();
+      interactionTime = millis();
   }
   
   //Precondition: sit(Table t) has been called, so sittingAt is != null
@@ -116,7 +117,7 @@ class Customer{
     ordered = true;
     //add food to check
     foodOrdered = menu[(int)random(menu.length)];
-    sittingTime = millis();
+    interactionTime = millis();
     return foodOrdered;
   }
 

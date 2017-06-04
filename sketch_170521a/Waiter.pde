@@ -78,9 +78,12 @@ class Waiter{
   
   //checks if customer ordered and if inHands matches customer's order
   boolean serveFood(Customer c){
-    //if (c.ordered && inHands == c.foodOrdered){
+    if (c.ordered && inHands == c.foodOrdered){
       c.served = true;
-    c.sittingTime = millis();//}
+      c.sittingAt.setDish(inHands);
+      inHands = null;
+    c.interactionTime = millis();
+  }
       return c.served;
   }
 }

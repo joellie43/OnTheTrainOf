@@ -6,6 +6,7 @@ class Food{
   int x, y;
   color shade;
   int foodTimer = 0;
+  Customer recipient;
   
   Food(String fDesc, int fCost, int fSec, int pos){
      description = fDesc;
@@ -23,9 +24,11 @@ class Food{
      else{
         shade = color(0, 200, 0); 
      }
+     recipient = null;
   }
   
   void display(){
+      
      PShape overall, plate, entree;
      overall = createShape(GROUP);
      
