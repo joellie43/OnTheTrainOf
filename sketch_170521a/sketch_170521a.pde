@@ -4,17 +4,12 @@ ArrayList<Table> tables;
 Waiter flo;
 ArrayList<Food> foods; //collection of ordered foods
 ArrayList<Customer> customers;
-Food toPlaceOnTable = null;
-Food dinner;
 
-boolean nearToFood;
-boolean lockedFood = true;
 Customer target;
 int customerSize = 300; //size of square encompassing customers
 boolean disableFlo = false;
 int initTime;
 int genTime;
-int start;
 int goal = 50;
 int customerCount = 0; //how many customers are waiting to be seated
 int[] availablePos = {150,300,450,600};
@@ -240,7 +235,6 @@ void createFood(Food f, Customer r, int i){
     f.position = i;
     foods.add(f);
 }
-
 
 void pickUp(ArrayList foods){
     //take out the first food
