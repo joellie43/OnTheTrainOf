@@ -43,7 +43,6 @@ void draw() {
   
   //spawn customers every 3 sceconds
   if(millis() > genTime + 3000 && customerCount < 4){
-      //System.out.println("added customer" + second());
       int x = 0;
       int tempI = 0;
       for(int i = 0 ; i < 4; i += 1){
@@ -136,7 +135,6 @@ void draw() {
     if (millis() - c.interactionTime > 5000){
     c.askForService();
     c.askingForService = true;
-    //System.out.println("exclamation appeared");
     }
     //exclamation point appears
     //if waiter is 100 away from customer
@@ -144,29 +142,29 @@ void draw() {
     if (dist(flo.x,flo.y,c.x,c.y) < 100){
       if (c.ordered != true && c.askingForService){
       c.order();
-      System.out.println(c.foodOrdered.description);
-      createFood(c.foodOrdered, c, foods.size() + 1);;
-    System.out.println("ordered");
+      createFood(c.foodOrdered, c, foods.size() + 1);
     }
     //then receive food
     if (c.ordered && c.askingForService && flo.inHands != null && flo.inHands == c.foodOrdered){
         flo.serveFood(c);
-        System.out.println("served");
         if (c.sittingAt.dish != null){
-      c.sittingAt.dish.display();}
+          c.sittingAt.dish.display();
+        }
       }
     //wait 5 seconds after receiving food before ready to pay  
     if (millis() - c.interactionTime > 5000){
           c.doneEating = true;
-        //System.out.println("done eating");
-      } 
+    } 
     //lastly pay and leave
     if (c.served && c.askingForService && c.doneEating){
       flo.madeSoFar += c.foodOrdered.cost;
-      //System.out.println("paid");
-      c.leave(1);//leave happily
+      //removes dish from table
+      c.sittingAt.dish = null;
+      //customer leaves happily
+      c.leave(1);
       //c.sittingAt.dish = null;
-    c.sittingAt = null;}
+      c.sittingAt = null;
+    }
     }
   }
   //leave to the left of the screen(whether happy or angry)
@@ -248,7 +246,6 @@ void pickUp(ArrayList foods){
     //take out the first food
      try{
        flo.inHands = (Food)foods.remove(0);
-       System.out.println(flo.inHands.description + "picked up");
      }
      catch(IndexOutOfBoundsException e){
        return;
