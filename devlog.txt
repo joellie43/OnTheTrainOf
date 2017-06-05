@@ -63,31 +63,33 @@ Dimitriy :: Made food move with Flo and arrayList of Foods that would shift if a
 2017-5-26
 ------------------------------------------------------------
 Joelle :: Wrote ReadMe and programmed exclamation mark that pops up when customers are seated
-Dmitriy :: Continued programming Food movement
+Dimitriy :: Continued programming Food movement
 Nikita :: Expereimented with different time mechanisms
 
 2017-5-29
 -------------------------------------------------------------
 Joelle :: Allowed customers to order, added serveFood() to waiter and put clock in the corner for the user to see 
 Nikita :: Implemented a clock and programmed customer patience(shade changing and leaving)
-Dmitriy :: Allowed for customer patience to reset when Flo arrives at table
+Dimitriy :: Allowed for customer patience to reset when Flo arrives at table
 
 2017-5-30
 ------------------------------------------------------------
 Joelle :: Added more inline comments, uploaded uml.pdf, fixed timing with exclamation point to appear after 5 seconds of each interaction, slowed down customer's patience by 5 seconds
 Nikita :: Fixed clock bug so that clock doesn't reset every 60 seconds, got waiter to pick up food from any angle
-Dmitriy :: Added additional spots from which food would be delivered to tables
+Dimitriy :: Added additional spots from which food would be delivered to tables
 
 2017-5-31
 -----------------------------------------------------------
 Joelle :: Started working on making a customer generating mechanism
 Nikita :: Finished coding customer generating mechanism at home
-Dmitriy :: Ensured that food is delivered specifically to tables with customers
+Dimitriy :: Ensured that food is delivered specifically to tables with customers
 
 2017-6-1
 -----------------------------------------------------------
 Joelle :: Customers are able to be correctly ask for service, be served, pay, and leave; added "winning screen" for when goal is reached
+Dimitriy :: Enabled Flo and the food to move based on where a click is made
 
 2017-6-4
 -----------------------------------------------------------
 Joelle :: fixed food code with placing food at tables; added exceptions to when customer leaves angrily; added "losing screen" when 3 minutes passes
+Dimitriy :: added flowchart, created a preliminary sidebar
