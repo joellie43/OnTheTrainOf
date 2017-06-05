@@ -11,23 +11,30 @@ Diner Dash
 ------------------------------------------
 OBSTACLES OVERCOME
 *Dragging multiple shapes while also having click-based functions
+*Generating Customers in a queue like fashion as opposed to picking any customer from the line
+*Picking up food from any angle while not picking up multiple dishes from the kitchen
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 UNRESOLVED 
 *Making Waiter go around table and not through it
-*Making customers reset to green after each interaction
-*Making sure no two customers are at the same table
+*Creating a functional undo button for the game
+*Having a stack for cleaning dishes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED
 *How to put multiple shapes together with createShape()
+*learned how to make text appear on screen
+*learned how to utilize millis() for time
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MID-DEVELOPMENT DESIGN CHANGES
-*Make customers change from green to red to symbolize patience
+*Make customers change from green to red to symbolize patience as opposed to having a bar float over their heads
+*Food is removed when customers leave not by Flo cleaning the table. 
+*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 LESSONS LEARNED
+*Dont create too many instance vars
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ||||||||||||||||||||||||||||||||||||||||||
@@ -89,7 +96,18 @@ Dimitriy :: Ensured that food is delivered specifically to tables with customers
 Joelle :: Customers are able to be correctly ask for service, be served, pay, and leave; added "winning screen" for when goal is reached
 Dimitriy :: Enabled Flo and the food to move based on where a click is made
 
+2017-6-2
+-----------------------------------------------------------
+Nikita :: Turned customer line into a queue by taking customers from bottom of line and shifting other customers down. Gave customers colors for personality.
+
 2017-6-4
 -----------------------------------------------------------
 Joelle :: fixed food code with placing food at tables; added exceptions to when customer leaves angrily; added "losing screen" when 3 minutes passes
 Dimitriy :: added flowchart, created a preliminary sidebar
+Nikita :: Fixed bugs asociated with food removal
+
+2017-6-5
+----------------------------------------------------------
+Joelle :: adjusted timing in code 
+Dimitriy :: finished working on sidebar and edtied launch instructions
+Nikita :: cleaned code and went over Devlog/ReadMe
