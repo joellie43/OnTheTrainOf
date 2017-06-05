@@ -1,6 +1,6 @@
 import java.util.List;
 class Customer{
-  Food[] menu = new Food[3];
+  Food[] menu = new Food[4];
   
   int x,y;
   String description; //such as businessman, food critic, mother
@@ -23,9 +23,10 @@ class Customer{
   //no redShift red is designated for angry customers only
   
   Customer(String desc, int ID, int num, int sec, int newGenPos, int xcor, int ycor){
-    menu[0] = new Food("sausage",10,5000,0);
-    menu[1] = new Food("ham",10,5000,1);
-    menu[2] = new Food("lettuce",3,3000,2);
+    menu[0] = new Food("sausage",10,8000,0);
+    menu[1] = new Food("ham",8,10000,1);
+    menu[2] = new Food("salad",3,8000,2);
+    menu[3] = new Food("burger",9000,3);
     description = desc;
     id = ID; 
     partyOf = num;
