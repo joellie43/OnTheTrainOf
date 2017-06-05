@@ -129,6 +129,8 @@ class Customer{
       sittingAt.empty = true;
     }
     leaving = newLeaving;
+    //removes food from table
+    sittingAt.dish = null;
     sittingAt = null;
   }
 }
