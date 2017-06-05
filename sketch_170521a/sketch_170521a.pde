@@ -76,7 +76,7 @@ void draw() {
   text(flo.madeSoFar + "/" + goal,825,600);
   
   //right side order customer tracker
-  textSize(12);
+  textSize(8);
   fill(150);
   if(messageBoard.isEmpty()){
       messageBoard.add(newMessage);
@@ -92,7 +92,7 @@ void draw() {
        messageBoard.add(newMessage); 
     }
     for(int i = 0; i < messageBoard.size(); i++){
-       text(messageBoard.get(i), 720, 280 + 15*i); 
+       text(messageBoard.get(i), 820, 320 + 10*i); 
     }
   }
   if(messageBoard.size() > 10){
