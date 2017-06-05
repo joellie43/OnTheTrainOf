@@ -15,8 +15,17 @@ Top right square that displays a time: Timer
 
 ## How to play
 
+Click on tables or the left most dish to have the waiter walk to them. 
+
+Click and drag the customer group (customers act in groups of four but are treated as one) at the bottom (front) of the line to a table and release them over it. The other customers will then step down the line. If the customer isn't released over a table then they will go back to the front of the line. After 5 seconds the customers will alert the user with an exclamation mark(10 seconds after the exclamation mark shows up they will leave). Go to their table to take their order them before they turn red and walk out. Then bring them their food and wait for them to be ready to pay with the same patience time restrictions as before.
+
+Collect 50 dollars to win the game before you run out of time.
+
 ## Queues and ArrayLists within this game
 
+The customers stand in a queue. The first customer to get in line is the first one allowed to get a table. The user is restricted to only selecting the first customer on line by continuously shifting down customers and finding the frontmost spot in line. This maintains a queue. 
+
+The food is also produced in a queue like fashion. When a customer orders food prior to someone else, their food is made first and can only be picked up first. The leftmost food is the front of the queue and the other foods shift down, when it is dequeued.
 
 ## Bugs and things to watch out for
 If the waiter is at the customer's table but they are still growing more impatient, try going to a different table and coming back. Sometimes it may still be a bit too early for them to order. When they have an exclamation mark hovering over them, they are ready to order, eat, or pay.
