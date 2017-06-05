@@ -13,6 +13,16 @@ Food : concentric circles with centers of either pink, green, or crimson to repr
 Tables : squares of different colors
 Top right square that displays a time: Timer
 
+## How to play
+
+## Queues and ArrayLists within this game
+
+
+## Bugs and things to watch out for
+If the waiter is at the customer's table but they are still growing more impatient, try going to a different table and coming back. Sometimes it may still be a bit too early for them to order. When they have an exclamation mark hovering over them, they are ready to order, eat, or pay.
+
+If you are having difficulty clicking on the food to pick it up from the kitchen, try clicking on the center of the left most dish(the one you are trying to pick up) or slightly to the left of it.
+
 ## Launch Instructions
 1. Have either your terminal or command prompt open.
 2. Proceed into the directory where you want our game to reside.
