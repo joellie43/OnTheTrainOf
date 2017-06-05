@@ -1,21 +1,24 @@
 import java.util.ArrayList;
-import java.util.Stack;
 
 ArrayList<Table> tables; 
 Waiter flo;
 ArrayList<Food> foods; //collection of ordered foods
 ArrayList<Customer> customers;
+Food toPlaceOnTable = null;
+Food dinner;
 
+boolean nearToFood;
+boolean lockedFood = true;
 Customer target;
 int customerSize = 300; //size of square encompassing customers
 boolean disableFlo = false;
 int initTime;
 int genTime;
+int start;
 int goal = 50;
 int customerCount = 0; //how many customers are waiting to be seated
 int[] availablePos = {150,300,450,600};
 //ArrayList<Integer> prioritySideBar;
-Stack<Interaction> actions;
 
 void setup() {
   size(960, 640);
@@ -29,8 +32,8 @@ void setup() {
   target = null;
   foods = new ArrayList<Food>();
   
-  //prioritySideBar = new ArrayList<Integer>();
-  actions = new Stack<Interaction>();
+  //prioritySideBar = ne<Integer>();
+
   initTime = millis();//roughly 370-450 by end of setup
   genTime = millis();
 }
@@ -69,11 +72,6 @@ void draw() {
   textSize(32);
   fill(255);
   text(flo.madeSoFar + "/" + goal,825,600);
-  
-  //bottom right money tracker
-  textSize(32);
-  fill(255);
-  text("undo",700,50);
   
   for (Table t : tables){
     t.display();
@@ -145,7 +143,6 @@ void draw() {
       if (c.ordered != true && c.askingForService){
       c.order();
       createFood(c.foodOrdered, c, foods.size() + 1);
-      actions.push(new Interaction("tookOrder",c));
     }
     //then receive food
     if (c.ordered && c.askingForService && flo.inHands != null && flo.inHands == c.foodOrdered){
@@ -153,7 +150,6 @@ void draw() {
         if (c.sittingAt.dish != null){
           c.sittingAt.dish.display();
         }
-        actions.push(new Interaction("gaveFood",c));
       }
     //wait 5 seconds after receiving food before ready to pay  
     if (millis() - c.interactionTime > 5000){
@@ -162,13 +158,9 @@ void draw() {
     //lastly pay and leave
     if (c.served && c.askingForService && c.doneEating){
       flo.madeSoFar += c.foodOrdered.cost;
-      //removes dish from table
-      c.sittingAt.dish = null;
       //customer leaves happily
       c.leave(1);
-      //c.sittingAt.dish = null;
       c.sittingAt = null;
-      actions.push(new Interaction("customerLeft",c));
     }
     }
   }
@@ -181,16 +173,12 @@ void draw() {
     if (flo.inHands != null && flo.inHands.recipient == c){
       flo.inHands = null;
     }
-   }
+ }
  }
  //drag the customer along mouse
  if(mousePressed && target != null){
    target.x = mouseX;
    target.y = mouseY;
- }
- 
- if (mousePressed && mouseX >= 600 && mouseX <= 800 && mouseY >= 30 && mouseY <= 82){
-   undo();
  }
  
  //check if waiter reached goal
@@ -250,11 +238,11 @@ void createFood(Food f, Customer r, int i){
     foods.add(f);
 }
 
+
 void pickUp(ArrayList foods){
     //take out the first food
      try{
        flo.inHands = (Food)foods.remove(0);
-       actions.push(new Interaction("pickUp",flo.inHands));
      }
      catch(IndexOutOfBoundsException e){
        return;
@@ -263,44 +251,4 @@ void pickUp(ArrayList foods){
      for(Object f: foods){
         ((Food)f).position -= 1; 
      }
-}
-
-void undo(){
-  System.out.println("hi");
-  System.out.println(actions.size() == 0);
-  if (actions.size() > 0){
-  Interaction lastDone = (Interaction)actions.pop();
-  //last action = moving
-  if (lastDone.action == "moved"){
-    flo.x = lastDone.floX;
-    flo.y = lastDone.floY;
-  }
-  
-  //last action = pick up food
-  if (lastDone.action == "pickUp"){
-    foods.add(flo.inHands.position-1,flo.inHands);
-    flo.inHands = null;
-  }
-  
-  //last action = took order
-  if (lastDone.action == "tookOrder"){
-    lastDone.c.ordered = false;
-    lastDone.c.interactionTime = millis();
-    foods.remove(foods.size()-1);
-  }
-  
-  //last action = gave food to customer
-  if (lastDone.action == "gaveFood"){
-    lastDone.c.served = false;
-    lastDone.c.interactionTime = millis();
-  lastDone.c.sittingAt.dish = null;  
-  }
-  
-  //last action = customer pays and leaves
-  if (lastDone.action == "customerLeft"){
-    lastDone.c.leaving = -1;
-    lastDone.c.interactionTime = millis();
-    flo.madeSoFar -= lastDone.c.foodOrdered.cost;
-  }
-  }
 }
