@@ -4,6 +4,9 @@ ArrayList<Table> tables;
 Waiter flo;
 ArrayList<Food> foods; //collection of ordered foods
 ArrayList<Customer> customers;
+int customerID = 0;
+ArrayList<String> messageBoard;
+String newMessage = "";
 
 boolean nearToFood;
 Customer target;
@@ -25,6 +28,7 @@ void setup() {
   tables.add(3, new Table(4,765,200));
   flo = new Waiter();
   customers = new ArrayList<Customer>();
+  messageBoard = new ArrayList<String>();
   target = null;
   foods = new ArrayList<Food>();
   
@@ -47,8 +51,10 @@ void draw() {
           tempI = i;
         }
       }
-      Customer c = new Customer("businessman",1,4,10,tempI,50,x);
+      Customer c = new Customer("businessman",customerID,4,10,tempI,50,x);
+      customerID += 1;
       customers.add(c);
+      newMessage = "Customer " + c.id + " has been created";
       customerCount += 1;
       availablePos[tempI] = - availablePos[tempI];
       genTime = millis();
@@ -68,6 +74,30 @@ void draw() {
   textSize(32);
   fill(255);
   text(flo.madeSoFar + "/" + goal,825,600);
+  
+  //right side order customer tracker
+  textSize(12);
+  fill(150);
+  if(messageBoard.isEmpty()){
+      messageBoard.add(newMessage);
+  }
+  if(!(messageBoard.isEmpty())){
+    boolean addOrNot = true;
+    for(String s: messageBoard){
+       if(s.equals(newMessage)){
+         addOrNot = false; 
+       } 
+    }
+    if(addOrNot){
+       messageBoard.add(newMessage); 
+    }
+    for(int i = 0; i < messageBoard.size(); i++){
+       text(messageBoard.get(i), 720, 280 + 15*i); 
+    }
+  }
+  if(messageBoard.size() > 10){
+     messageBoard.remove(0); 
+  }
   
   for (Table t : tables){
     t.display();
@@ -127,10 +157,12 @@ void draw() {
   
   //while customer is seated
   if (c.sittingAt != null){
+    newMessage = "Customer " + c.id + " is now seated";
     //make exclamation point appear 5 seconds after each interaction
     if (millis() - c.interactionTime > 5000){
     c.askForService();
     c.askingForService = true;
+    newMessage = "Please attend Customer " + c.id;
     }
     //exclamation point appears
     //if waiter is 100 away from customer
@@ -138,22 +170,25 @@ void draw() {
     if (dist(flo.x,flo.y,c.x,c.y) < 100){
       if (c.ordered != true && c.askingForService){
       c.order();
+      newMessage = "Customer " + c.id + " has Ordered: " + c.foodOrdered.description;
       createFood(c.foodOrdered, c, foods.size() + 1);
     }
     //then receive food
     if (c.ordered && c.askingForService && flo.inHands != null && flo.inHands == c.foodOrdered){
         flo.serveFood(c);
+        messageBoard.add("Customer " + c.id + " has received food");
         if (c.sittingAt.dish != null){
           c.sittingAt.dish.display();
         }
       }
     //wait 5 seconds after receiving food before ready to pay  
     if (millis() - c.interactionTime > 5000){
-          c.doneEating = true;
+       c.doneEating = true;
     } 
     //lastly pay and leave
     if (c.served && c.askingForService && c.doneEating){
       flo.madeSoFar += c.foodOrdered.cost;
+      messageBoard.add("$" + c.foodOrdered.cost + " has been added!");
       //customer leaves happily
       c.leave(1);
       c.sittingAt = null;
@@ -162,6 +197,7 @@ void draw() {
   }
   //leave to the left of the screen(whether happy or angry)
   if(c.leaving >= 0){
+    newMessage = "Customer " + c.id + " is leaving"; 
     if(c.x > -50){
       c.x -= 5;
     }
@@ -231,6 +267,7 @@ void mouseReleased(){
 void createFood(Food f, Customer r, int i){
     f.recipient = r;
     f.position = i;
+    f.label += r.id;
     foods.add(f);
 }
 

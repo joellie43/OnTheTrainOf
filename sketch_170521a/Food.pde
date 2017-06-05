@@ -7,6 +7,7 @@ class Food{
   color shade;
   int foodTimer = 0;
   Customer recipient;
+  String label = "";
   
   Food(String fDesc, int fCost, int fSec, int pos){
      description = fDesc;
@@ -42,6 +43,12 @@ class Food{
      overall.addChild(entree);
      
      shape(overall);
+     
+     /*textSize(12);
+     fill(0);
+     int z = 45 + position*50;
+     System.out.println(z);
+     text(label, x + 45, y + 5);*/
   }
   
   void move(Table t){
