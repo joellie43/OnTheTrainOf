@@ -18,7 +18,8 @@ OBSTACLES OVERCOME
 UNRESOLVED 
 *Making Waiter go around table and not through it
 *Creating a functional undo button for the game
-*Having a stack for cleaning dishes
+*If user is holding a dish already while going to help a customer pay, there is a glitch because when the user goes to serve
+the dish in hand, the finished dish from the customer that pays appears at its side (even though the user is not by the table)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED
