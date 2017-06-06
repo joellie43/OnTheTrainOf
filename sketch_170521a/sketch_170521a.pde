@@ -249,7 +249,7 @@ void draw() {
  }
  
  //check if time is up
- if (second() >= 100){
+ if (millis() - initTime >= 100000){
    fill(0,0,0); 
    rect(0,0,960,640);
    textSize(100);
