@@ -123,8 +123,9 @@ class Customer{
     if(sittingAt != null){
       sittingAt.empty = true;
       //removes food from table
-      sittingAt.dish = null;
+      //sittingAt.dish = null;
       sittingAt = null;
+      foodOrdered.finished = true;
     }
     leaving = newLeaving;
   }
