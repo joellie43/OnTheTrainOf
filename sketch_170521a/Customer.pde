@@ -1,12 +1,9 @@
 import java.util.List;
 class Customer{
-  Food[] menu = new Food[4];
+  Food[] menu = new Food[6];
   
   int x,y;
-  String description; //such as businessman, food critic, mother
   int id; //to keep track of customer
-  int partyOf; //how many people in one party
-  int timerSec; //how long each customer is willing to wait for service
   int timeOrdered; //mark the time at which customer ordered
   color shade;
   Table sittingAt;
@@ -22,15 +19,14 @@ class Customer{
   int greenShift; //g component of customer's rgb for personaliy
   //no redShift red is designated for angry customers only
   
-  Customer(String desc, int ID, int num, int sec, int newGenPos, int xcor, int ycor){
-    menu[0] = new Food("sausage",10,8000,0);
-    menu[1] = new Food("ham",8,10000,1);
-    menu[2] = new Food("salad",3,8000,2);
-    menu[3] = new Food("burger",9000,3);
-    description = desc;
+  Customer(int ID, int newGenPos, int xcor, int ycor){
+    menu[0] = new Food("ice cream",6); //white
+    menu[1] = new Food("pasta",8); //red
+    menu[2] = new Food("salad",5); //green
+    menu[3] = new Food("burger",9); //brown
+    menu[4] = new Food("taco",7); //yellow
+    menu[5] = new Food("soup",5); //orange
     id = ID; 
-    partyOf = num;
-    timerSec = sec;
     blueShift = (int)(Math.random()*256);
     greenShift = (int)(Math.random()*256);
     shade = color(0, greenShift, blueShift);
@@ -40,7 +36,7 @@ class Customer{
     sittingAt = null;
     interactionTime = -1;
     leaving = -1;//not leaving state
-    foodOrdered = menu[(int)random(3)];
+    foodOrdered = null;
   }
   
   void display(){
@@ -51,6 +47,7 @@ class Customer{
       if(timeDif > 15000){
         shade = color(255,0,0);
         leave(0);//leave angrily
+        flo.madeSoFar -= foodOrdered.cost;//flo wasted food so deduct that food's cost from her earnings
       }
       else{
         shade = color(255 * timeDif/10000,
@@ -106,12 +103,10 @@ class Customer{
     top = createShape(ELLIPSE, sittingAt.x, sittingAt.y, 20, 55);
     top.setFill(color(256, 0, 0));
     
-    
     exclamation.addChild(top);
     exclamation.addChild(bottom);
     
     shape(exclamation);
-    
   }
   
   Food order(){
@@ -122,16 +117,15 @@ class Customer{
     return foodOrdered;
   }
 
-
   //walk towards exit and disappears
   //precondition: sittingAt isnt null, newLeaving is 0 or 1
   void leave(int newLeaving){
     if(sittingAt != null){
       sittingAt.empty = true;
+      //removes food from table
+      sittingAt.dish = null;
+      sittingAt = null;
     }
     leaving = newLeaving;
-    //removes food from table
-    sittingAt.dish = null;
-    sittingAt = null;
   }
 }

@@ -14,51 +14,28 @@ int customerSize = 300; //size of square encompassing customers
 boolean disableFlo = false;
 int initTime;
 int genTime;
-int goal = 50;
+int goal = 100;
 int customerCount = 0; //how many customers are waiting to be seated
 int[] availablePos = {150,300,450,600};
-//ArrayList<Integer> prioritySideBar;
 
 void setup() {
   size(960, 640);
   tables = new ArrayList<Table>();
-  tables.add(0, new Table(4,375,200));
-  tables.add(1, new Table(4,765,500));
-  tables.add(2, new Table(4,375,500));
-  tables.add(3, new Table(4,765,200));
+  tables.add(0, new Table(375,200));
+  tables.add(1, new Table(765,500));
+  tables.add(2, new Table(375,500));
+  tables.add(3, new Table(765,200));
   flo = new Waiter();
   customers = new ArrayList<Customer>();
   messageBoard = new ArrayList<String>();
   target = null;
   foods = new ArrayList<Food>();
-  
-  //prioritySideBar = ne<Integer>();
-
   initTime = millis();//roughly 370-450 by end of setup
   genTime = millis();
 }
 
 void draw() {
-  background(0);
-  
-  //spawn customers every 3 sceconds
-  if(millis() > genTime + 3000 && customerCount < 4){
-      int x = 0;
-      int tempI = 0;
-      for(int i = 0 ; i < 4; i += 1){
-        if(availablePos[i] > 0){
-          x = availablePos[i];
-          tempI = i;
-        }
-      }
-      Customer c = new Customer("businessman",customerID,4,10,tempI,50,x);
-      customerID += 1;
-      customers.add(c);
-      newMessage = "Customer " + c.id + " has been created";
-      customerCount += 1;
-      availablePos[tempI] = - availablePos[tempI];
-      genTime = millis();
-    }
+  background(255);
   
   //light pink top right corner
   fill(255,200,200);
@@ -72,15 +49,17 @@ void draw() {
   
   //bottom right money tracker
   textSize(32);
-  fill(255);
+  fill(0);
   text(flo.madeSoFar + "/" + goal,825,600);
   
   //right side order customer tracker
-  textSize(8);
+  textSize(12);
   fill(150);
+  
   if(messageBoard.isEmpty()){
       messageBoard.add(newMessage);
   }
+  
   if(!(messageBoard.isEmpty())){
     boolean addOrNot = true;
     for(String s: messageBoard){
@@ -88,13 +67,16 @@ void draw() {
          addOrNot = false; 
        } 
     }
-    if(addOrNot){
-       messageBoard.add(newMessage); 
+    
+  if(addOrNot){
+    messageBoard.add(newMessage); 
     }
-    for(int i = 0; i < messageBoard.size(); i++){
-       text(messageBoard.get(i), 820, 320 + 10*i); 
+    
+  for(int i = 0; i < messageBoard.size(); i++){
+    text(messageBoard.get(i), 750, 320 + 10*i); 
     }
   }
+  
   if(messageBoard.size() > 10){
      messageBoard.remove(0); 
   }
@@ -106,20 +88,13 @@ void draw() {
   for (Food f: foods){
        f.display();
   }
-  
-  //if flo is carrying food
-    if (flo.inHands != null){
-     flo.inHands.display();
-     
-     //to move food with flo
-     flo.inHands.x = flo.x - 10;
-     flo.inHands.y = flo.y + 10;
-   }
 
   //****FLO'S CODE****
   
   flo.move();
+  
   flo.display();
+  
   for(Table t: tables){
     //user clicks on table
     if(mousePressed && !disableFlo && dist(mouseX,mouseY,t.x,t.y) < 55){
@@ -134,19 +109,48 @@ void draw() {
     flo.targetY = 40;
   }
   
+  //if near food station
   if(dist(flo.x, flo.y, 300, 40) == 0 && flo.inHands == null){
-    pickUp(foods);
+    pickUp();
   }
   
-  //*****************
+  //if flo is carrying food
+    if (flo.inHands != null){
+     flo.inHands.display();
+     
+     //to move food with flo
+     flo.inHands.x = flo.x - 10;
+     flo.inHands.y = flo.y + 10;
+   }
   
  //**CUSTOMER'S CODE**
+ 
+ //spawn customers every 3 sceconds
+  if(millis() > genTime + 3000 && customerCount < 4){
+      int x = 0;
+      int tempI = 0;
+      for(int i = 0 ; i < 4; i += 1){
+        if(availablePos[i] > 0){
+          x = availablePos[i];
+          tempI = i;
+        }
+      }
+      Customer c = new Customer(customerID,tempI,75,x);
+      customerID += 1;
+      customers.add(c);
+      newMessage = "Customer " + c.id + " has entered";
+      customerCount += 1;
+      availablePos[tempI] = - availablePos[tempI];
+      genTime = millis();
+    }
+ 
   int lowestPos = -1;
   for(int i = 0; i < 4; i ++){
     if(availablePos[i] < 0){
       lowestPos = i;
     }
   }
+  
  for (Customer c : customers){
   c.display();
   if(lowestPos == c.genPos && c.sittingAt == null && mousePressed && dist(mouseX,mouseY,c.x,c.y) < 55) {
@@ -155,6 +159,12 @@ void draw() {
     target = c;
   }
   
+  //drag the customer along mouse
+ if(mousePressed && target != null && target.leaving == -1){
+   target.x = mouseX;
+   target.y = mouseY;
+ }
+ 
   //while customer is seated
   if (c.sittingAt != null){
     newMessage = "Customer " + c.id + " is now seated";
@@ -188,10 +198,9 @@ void draw() {
     //lastly pay and leave
     if (c.served && c.askingForService && c.doneEating){
       flo.madeSoFar += c.foodOrdered.cost;
-      messageBoard.add("$" + c.foodOrdered.cost + " has been added!");
+      messageBoard.add("You have made $" + c.foodOrdered.cost + "!");
       //customer leaves happily
       c.leave(1);
-      c.sittingAt = null;
     }
     }
   }
@@ -205,16 +214,15 @@ void draw() {
     if (flo.inHands != null && flo.inHands.recipient == c){
       flo.inHands = null;
     }
- }
- }
- //drag the customer along mouse
- if(mousePressed && target != null){
-   target.x = mouseX;
-   target.y = mouseY;
+    //if customer left without taking food, make his/her order disappear
+    if (foods.size() > 0 && foods.get(0).recipient == c){
+      foods.remove(0);
+    }
+   }
  }
  
- //check if waiter reached goal
- if (second() >= 180){
+ //check if time is up
+ if (second() >= 100){
    fill(0,0,0); 
    rect(0,0,960,640);
    textSize(100);
@@ -230,6 +238,7 @@ void draw() {
   fill(255);
   text("You won!",230,320);
   }
+  
  //***************
 }//end of draw()
 
@@ -267,12 +276,10 @@ void mouseReleased(){
 void createFood(Food f, Customer r, int i){
     f.recipient = r;
     f.position = i;
-    f.label += r.id;
     foods.add(f);
 }
 
-
-void pickUp(ArrayList foods){
+void pickUp(){
     //take out the first food
      try{
        flo.inHands = (Food)foods.remove(0);

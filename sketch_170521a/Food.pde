@@ -1,29 +1,33 @@
 class Food{
   String description;
   int cost;
-  int secondsToMake;
   int position;
   int x, y;
   color shade;
-  int foodTimer = 0;
   Customer recipient;
-  String label = "";
   
-  Food(String fDesc, int fCost, int fSec, int pos){
+  Food(String fDesc, int fCost){
      description = fDesc;
      cost = fCost;
-     secondsToMake = fSec;
-     position = pos;
      x = 300;
      y = 40;
-     if(description.equals("sausage")){
-        shade = color(125, 10, 10);
+     if(description.equals("ice cream")){
+        shade = color(255, 255, 255);
      }
-     else if(description.equals("ham")){
+     else if(description.equals("pasta")){
         shade = color(200, 0, 100); 
      }
-     else{
+     else if(description.equals("salad")){
         shade = color(0, 200, 0); 
+     }
+     else if(description.equals("burger")){
+       shade = color(80,50,10);
+     }
+     else if(description.equals("taco")){
+       shade = color(255, 204, 0);
+     }
+     else if(description.equals("soup")){
+       shade = color(256,128,0);
      }
      recipient = null;
   }
@@ -43,18 +47,5 @@ class Food{
      overall.addChild(entree);
      
      shape(overall);
-     
-     /*textSize(12);
-     fill(0);
-     int z = 45 + position*50;
-     System.out.println(z);
-     text(label, x + 45, y + 5);*/
   }
-  
-  void move(Table t){
-         //fill(200, 100, 0);
-         x = t.x;
-         y = t.y;
-  }
-  
 }

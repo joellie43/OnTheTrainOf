@@ -3,7 +3,6 @@ class Waiter{
   color shade; 
   Food inHands; //the food the waiter is holding to give to a customer
   int madeSoFar; //how much the waiter has made so far
-  int state;
   int targetX;
   int targetY;
   float dx, dy;
@@ -12,7 +11,6 @@ class Waiter{
     x = 45;
     y = 45;
     shade = color(255, 204, 0);
-    state = 0; //default
     dx = 1;
     dy = 1;
     targetX = -1;
@@ -66,24 +64,15 @@ class Waiter{
         else{targetX = -1; targetY = -1;}//target reached
       }
   }
-  
-  void rotate(){
-  
-  }
-  
-  //to pick up food from counter
-  void pickUpFood(Food foo){
-    inHands = foo;
-  }
-  
+   
   //checks if customer ordered and if inHands matches customer's order
   boolean serveFood(Customer c){
     if (c.ordered && inHands == c.foodOrdered){
       c.served = true;
       c.sittingAt.setDish(inHands);
       inHands = null;
-    c.interactionTime = millis();
-  }
+      c.interactionTime = millis();
+      }
       return c.served;
   }
 }
