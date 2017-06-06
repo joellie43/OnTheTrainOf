@@ -19,7 +19,7 @@ UNRESOLVED
 *Making Waiter go around table and not through it
 *Creating a functional undo button for the game
 *If user is holding a dish already while going to help a customer pay, there is a glitch because when the user goes to serve
-the dish in hand, the finished dish from the customer that pays appears at its side (even though the user is not by the table)
+that dish, the finished dish from the customer that paid appears at its side (even though the user is not by the table)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED
@@ -29,14 +29,19 @@ COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MID-DEVELOPMENT DESIGN CHANGES
-*Make customers change from green to red to symbolize patience as opposed to having a bar float over their heads
-*Food is removed when customers leave not by Flo cleaning the table. 
+*Make customers change from green to red to symbolize patience as opposed to having a bar float over their head
 *Flo can only move to certain areas
+*Customers waiting on line have unlimited patience
+*Helping sidebar states not only the order of which customers have been served, but also the order they have been seated and left the diner
+To increase the difficulty of the game...
+*When a customer leaves angrily, Flo is deducted the cost of the food that customer ordered
+*Users only have 100 seconds (originally planned on giving 3 minutes) to reach the goal
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 LESSONS LEARNED
 *Dont create too many instance vars
 *Processing is like a continuous while loop, so we had to make use of many state variables
+*It is okay to cut out certain features, so that we can make time to accomplish what is managable
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ||||||||||||||||||||||||||||||||||||||||||
@@ -104,7 +109,7 @@ Nikita :: Turned customer line into a queue by taking customers from bottom of l
 
 2017-6-4
 -----------------------------------------------------------
-Joelle :: fixed food code with placing food at tables; added exceptions to when customer leaves angrily; added "losing screen" when 3 minutes passes
+Joelle :: fixed food code with placing food at tables; added exceptions to when customer leaves angrily; added "losing screen" when 100 seconds passes
 Dimitriy :: added flowchart, created a preliminary sidebar
 Nikita :: Fixed bugs asociated with food removal
 
@@ -113,3 +118,7 @@ Nikita :: Fixed bugs asociated with food removal
 Joelle :: adjusted timing in code, cleaned up code, fixed bug with being able to drag customers even as they are leaving, made slight design changes regarding colors, created cleaning table/washing dishes function
 Dimitriy :: finished working on sidebar and edited launch instructions
 Nikita :: cleaned code and went over Devlog/ReadMe
+
+2017-6-6
+----------------------------------------------------------
+Joelle :: fixed bug with winning screen returning to game play because of customers leaving angrily in the background
