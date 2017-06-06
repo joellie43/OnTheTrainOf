@@ -17,6 +17,7 @@ int genTime;
 int goal = 50;
 int customerCount = 0; //how many customers are waiting to be seated
 int[] availablePos = {150,300,450,600};
+boolean won,lost;
 
 void setup() {
   size(960, 640);
@@ -32,10 +33,14 @@ void setup() {
   foods = new ArrayList<Food>();
   initTime = millis();//roughly 370-450 by end of setup
   genTime = millis();
+  won = false;
+  lost = false;
 }
 
 void draw() {
   background(245,245,220);
+ 
+  if (!won && !lost){
   
   //light pink top right corner
   fill(255,200,200);
@@ -129,10 +134,8 @@ void draw() {
   }
 }
   
-  
-  
   //user clicks food station
-  if(mousePressed && !disableFlo && dist(mouseX,mouseY,300,40) < 50){
+  if(mousePressed && !disableFlo && dist(mouseX,mouseY,300,40) < 100){
     flo.targetX = 300;
     flo.targetY = 40;
   }
@@ -236,36 +239,32 @@ void draw() {
     if(c.x > -50){
       c.x -= 5;
     }
-    /*
-    //if flo is holding a customer that left angrily's food, make that food disappear
-    if (flo.inHands != null && flo.inHands.recipient == c){
-      flo.inHands = null;
-    }*/
     //if customer left without taking food, make his/her order disappear
     if (foods.size() > 0 && foods.get(0).recipient == c){
       foods.remove(0);
     }
    }
  }
- 
- //check if time is up
+}
+    //check if time is up
  if (millis() - initTime >= 100000){
+   lost = true;
    fill(0,0,0); 
    rect(0,0,960,640);
    textSize(100);
   fill(255);
-  text("You lose!",230,320);
+  text("You lost!",230,320);
   }
  
  //check if waiter reached goal
  if (flo.madeSoFar >= goal){
+   won = true;
    fill(0,0,0); 
    rect(0,0,960,640);
    textSize(100);
   fill(255);
   text("You won!",230,320);
   }
-  
  //***************
 }//end of draw()
 
