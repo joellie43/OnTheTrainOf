@@ -4,7 +4,7 @@ class Table{
   int x,y;
   color shade;
   color dishShade;
-  boolean empty;
+  boolean empty, clean;
   Food dish;
   
   Table(int xcor, int ycor){
@@ -16,6 +16,7 @@ class Table{
     y= ycor;
     empty = true;
     dish = null;
+    clean = true;
   }
   
   //place a dish on table
@@ -23,6 +24,7 @@ class Table{
     f.x = x;
     f.y = y;
     dish = f;
+    clean = false;
   }
   
   void display(){
