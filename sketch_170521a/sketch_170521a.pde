@@ -56,6 +56,10 @@ void draw() {
   textSize(12);
   fill(150);
   
+  //dish washer
+  fill(209);
+  rect(725,0,50,50);
+  
   if(messageBoard.isEmpty()){
       messageBoard.add(newMessage);
   }
@@ -97,15 +101,38 @@ void draw() {
   flo.display();
   
   for(Table t: tables){
-    //user clicks on table
+    //user clicks on table, move to table
     if(mousePressed && !disableFlo && dist(mouseX,mouseY,t.x,t.y) < 55){
       flo.targetX = t.x;
       flo.targetY = t.y;
     }
+    
+    //if clicks on table that needs to be cleaned
+    if (t.empty && !t.clean && flo.inHands == null){
+    flo.inHands = t.dish;
+    flo.inHands.display();
+    flo.inHands.x = flo.x - 10;
+    flo.inHands.y = flo.y + 10;
+    t.dish = null;
+    t.clean = true;
   }
   
+  //user clicks on dish washer while holding finished food
+  if (mousePressed && dist(mouseX,mouseY,725,0) < 50 && flo.inHands != null){
+    //move to dish washer
+    flo.targetX = 725;
+    flo.targetY = 0;
+    //click again to "wash dish" = make dish disappear
+    if (dist(flo.x,flo.y,725,0) < 50 && flo.inHands.finished){
+      flo.inHands = null;
+    }
+  }
+}
+  
+  
+  
   //user clicks food station
-  if(mousePressed&& !disableFlo && dist(mouseX,mouseY,300,40) < 50){
+  if(mousePressed && !disableFlo && dist(mouseX,mouseY,300,40) < 50){
     flo.targetX = 300;
     flo.targetY = 40;
   }
@@ -123,6 +150,7 @@ void draw() {
      flo.inHands.x = flo.x - 10;
      flo.inHands.y = flo.y + 10;
    }
+  
   
  //**CUSTOMER'S CODE**
  
@@ -181,16 +209,13 @@ void draw() {
     if (dist(flo.x,flo.y,c.x,c.y) < 100){
       if (c.ordered != true && c.askingForService){
       c.order();
-      newMessage = "Customer " + c.id + " has Ordered: " + c.foodOrdered.description;
+      newMessage = "Customer " + c.id + " has ordered: " + c.foodOrdered.description;
       createFood(c.foodOrdered, c, foods.size() + 1);
     }
     //then receive food
     if (c.ordered && c.askingForService && flo.inHands != null && flo.inHands == c.foodOrdered){
         flo.serveFood(c);
         messageBoard.add("Customer " + c.id + " has received food");
-        if (c.sittingAt.dish != null){
-          c.sittingAt.dish.display();
-        }
       }
     //wait 5 seconds after receiving food before ready to pay  
     if (millis() - c.interactionTime > 5000){
@@ -211,10 +236,11 @@ void draw() {
     if(c.x > -50){
       c.x -= 5;
     }
+    /*
     //if flo is holding a customer that left angrily's food, make that food disappear
     if (flo.inHands != null && flo.inHands.recipient == c){
       flo.inHands = null;
-    }
+    }*/
     //if customer left without taking food, make his/her order disappear
     if (foods.size() > 0 && foods.get(0).recipient == c){
       foods.remove(0);
@@ -248,7 +274,7 @@ void mouseReleased(){
   //check if customer was dropped off at a table
   if(target != null){
     for(Table t: tables){
-      if(dist(target.x,target.y,t.x,t.y) < 55 && t.empty){
+      if(dist(target.x,target.y,t.x,t.y) < 55 && t.empty && t.clean){
         target.sit(t);
         customerCount -= 1;
         availablePos[target.genPos] *= -1;
