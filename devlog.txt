@@ -24,7 +24,7 @@ UNRESOLVED
 COOL STUFF LEARNED
 *How to put multiple shapes together with createShape()
 *learned how to make text appear on screen
-*learned how to utilize millis() for time
+*learned how to utilize millis() and second() for time
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MID-DEVELOPMENT DESIGN CHANGES
@@ -35,6 +35,7 @@ MID-DEVELOPMENT DESIGN CHANGES
 
 LESSONS LEARNED
 *Dont create too many instance vars
+*Processing is like a continuous while loop, so we had to make use of many state variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ||||||||||||||||||||||||||||||||||||||||||
@@ -108,6 +109,6 @@ Nikita :: Fixed bugs asociated with food removal
 
 2017-6-5
 ----------------------------------------------------------
-Joelle :: adjusted timing in code, cleaned up code, fixed bug with being able to drag customers even as they are leaving, made slight design changes regarding colors 
+Joelle :: adjusted timing in code, cleaned up code, fixed bug with being able to drag customers even as they are leaving, made slight design changes regarding colors, created cleaning table/washing dishes function
 Dimitriy :: finished working on sidebar and edited launch instructions
 Nikita :: cleaned code and went over Devlog/ReadMe
