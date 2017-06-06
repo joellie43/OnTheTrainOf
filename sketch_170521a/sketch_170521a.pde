@@ -14,7 +14,7 @@ int customerSize = 300; //size of square encompassing customers
 boolean disableFlo = false;
 int initTime;
 int genTime;
-int goal = 100;
+int goal = 50;
 int customerCount = 0; //how many customers are waiting to be seated
 int[] availablePos = {150,300,450,600};
 
