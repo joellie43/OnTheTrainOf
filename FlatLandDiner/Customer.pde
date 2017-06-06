@@ -47,7 +47,9 @@ class Customer{
       if(timeDif > 15000){
         shade = color(255,0,0);
         leave(0);//leave angrily
-        flo.madeSoFar -= foodOrdered.cost;//flo wasted food so deduct that food's cost from her earnings
+        if(foodOrdered != null){
+          flo.madeSoFar -= foodOrdered.cost;//flo wasted food so deduct that food's cost from her earnings
+        }
       }
       else{
         shade = color(255 * timeDif/10000,
@@ -116,7 +118,6 @@ class Customer{
     interactionTime = millis();
     return foodOrdered;
   }
-
   //walk towards exit and disappears
   //precondition: sittingAt isnt null, newLeaving is 0 or 1
   void leave(int newLeaving){
@@ -125,7 +126,9 @@ class Customer{
       //removes food from table
       //sittingAt.dish = null;
       sittingAt = null;
+      if(foodOrdered != null){
       foodOrdered.finished = true;
+      }      
     }
     leaving = newLeaving;
   }
