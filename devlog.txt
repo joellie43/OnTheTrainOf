@@ -4,7 +4,7 @@ Dimitriy Leksanov
 Joelle Lum
 pd 1
 ---------------------
-Diner Dash
+Flat Land Diner
 
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
