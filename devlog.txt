@@ -6,13 +6,13 @@ pd 1
 ---------------------
 Diner Dash
 
-
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
 OBSTACLES OVERCOME
 *Dragging multiple shapes while also having click-based functions
 *Generating Customers in a queue like fashion as opposed to picking any customer from the line
 *Picking up food from any angle while not picking up multiple dishes from the kitchen
+*Handling exceptions that occur when customers leave angrily without being served/paying
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 UNRESOLVED 
@@ -30,7 +30,7 @@ COOL STUFF LEARNED
 MID-DEVELOPMENT DESIGN CHANGES
 *Make customers change from green to red to symbolize patience as opposed to having a bar float over their heads
 *Food is removed when customers leave not by Flo cleaning the table. 
-*
+*Flo can only move to certain areas
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 LESSONS LEARNED
@@ -108,6 +108,6 @@ Nikita :: Fixed bugs asociated with food removal
 
 2017-6-5
 ----------------------------------------------------------
-Joelle :: adjusted timing in code 
-Dimitriy :: finished working on sidebar and edtied launch instructions
+Joelle :: adjusted timing in code, cleaned up code, fixed bug with being able to drag customers even as they are leaving, made slight design changes regarding colors 
+Dimitriy :: finished working on sidebar and edited launch instructions
 Nikita :: cleaned code and went over Devlog/ReadMe
