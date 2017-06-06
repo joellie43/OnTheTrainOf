@@ -43,7 +43,7 @@ When multiple dishes are lying around, washing just one dish will cause all dish
 2. Proceed into the directory where you want our game to reside.
 3. Enter this command to clone our repo: 
 `git clone git@github.com:joellie43/OnTheTrainOf.git`
-4. Enter OnTheTrainOf, and then proceed into the directory titled `sketch_170521a`
-5. Type `processing sketch_170521a.pde` into the terminal after having cloned this repo. Make sure that you Processing downloaded in order for this to work.
+4. Enter OnTheTrainOf, and then proceed into the directory titled `FlatLandDinner`
+5. Type `processing FlatLandDinner.pde` into the terminal after having cloned this repo. Make sure that you Processing downloaded in order for this to work.
 6. When the processing window opens, click upon the green arrow to run the program.
 
