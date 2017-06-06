@@ -35,7 +35,7 @@ void setup() {
 }
 
 void draw() {
-  background(255);
+  background(245,245,220);
   
   //light pink top right corner
   fill(255,200,200);
@@ -73,6 +73,7 @@ void draw() {
     }
     
   for(int i = 0; i < messageBoard.size(); i++){
+    fill(0);
     text(messageBoard.get(i), 750, 320 + 10*i); 
     }
   }
