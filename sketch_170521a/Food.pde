@@ -4,6 +4,7 @@ class Food{
   int position;
   int x, y;
   color shade;
+  boolean finished;
   Customer recipient;
   
   Food(String fDesc, int fCost){
@@ -30,6 +31,7 @@ class Food{
        shade = color(256,128,0);
      }
      recipient = null;
+     finished = false;
   }
   
   void display(){
