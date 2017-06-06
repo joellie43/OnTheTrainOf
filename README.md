@@ -18,7 +18,7 @@ Money Tracker: bottom right corner
 
 Click on tables or the left most dish to have the waiter walk to them. 
 
-Click and drag the customer group (customers act in groups of four but are treated as one) at the bottom (front) of the line to a table and release them over it. The other customers will then step down the line. If the customer isn't released over a table then they will go back to the front of the line. After 5 seconds the customers will alert the user with an exclamation mark(10 seconds after the exclamation mark shows up they will leave). Go to their table to take their order them before they turn red and walk out. Then bring them their food and wait for them to be ready to pay with the same patience time restrictions as before.
+Click and drag the customer group (customers act in groups of four but are treated as one) at the bottom (front) of the line to a table and release them over it. The other customers will then step down the line. If the customer isn't released over a table then they will go back to the front of the line. After 5 seconds the customers will alert the user with an exclamation mark(10 seconds after the exclamation mark shows up they will leave). Go to their table to take their order them before they turn red and walk out. Then bring them their food and wait for them to be ready to pay with the same patience time restrictions as before. Carry the dirty dish to the white square dishwasher and click once more to put it in the dishwasher and have it disappear
 
 Collect 50 dollars to win the game before you run out of time.
 
@@ -32,6 +32,11 @@ The food is also produced in a queue like fashion. When a customer orders food p
 If the waiter is at the customer's table but they are still growing more impatient, try going to a different table and coming back. Sometimes it may still be a bit too early for them to order. When they have an exclamation mark hovering over them, they are ready to order, eat, or pay.
 
 If you are having difficulty clicking on the food to pick it up from the kitchen, try clicking on the center of the left most dish(the one you are trying to pick up) or slightly to the left of it.
+
+If user is holding a dish already while going to help a customer pay, there is a glitch because when the user goes to serve
+the dish in hand, the finished dish from the customer that pays appears at its side (even though the user is not by the table). This causes dishes to hop tables and stay there until the washing glitch removes them (explained in next bug).
+
+When multiple dishes are lying around, washing just one dish will cause all dishes to disappear (not just the one that was being washed).
 
 ## Launch Instructions
 1. Have either your terminal or command prompt open.
