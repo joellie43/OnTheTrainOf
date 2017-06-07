@@ -9,6 +9,8 @@ ArrayList<Food> foods; //collection of ordered foods
 ArrayList<Customer> customers;
 int customerID = 0;
 ArrayList<String> messageBoard;
+boolean customerIn = false;
+boolean toAttend = false;
 String newMessage = "";
 
 boolean nearToFood;
@@ -182,9 +184,14 @@ void draw() {
         }
       }
       Customer c = new Customer(customerID,tempI,75,x);
+      customerIn = true;
+      if(customerIn){
+        String s = "Customer " + c.id + " has entered";
+        messageBoard.add(s); 
+        customerIn = false;
+      }
       customerID += 1;
       customers.add(c);
-      newMessage = "Customer " + c.id + " has entered";
       customerCount += 1;
       availablePos[tempI] = - availablePos[tempI];
       genTime = millis();
@@ -216,10 +223,17 @@ void draw() {
     newMessage = "Customer " + c.id + " is now seated";
     //make exclamation point appear 5 seconds after each interaction
     if (millis() - c.interactionTime > 5000){
-    c.askForService();
-    c.askingForService = true;
-    newMessage = "Please attend Customer " + c.id;
+      //toAttend = true;
+      c.askForService();
+      c.askingForService = true;
+      //phased out: too difficult to implement consistently
+      //newMessage = "Please attend lonely Customer " + c.id + "!";
     }
+    /*if(toAttend){
+       String s = "Please attend Customer " + c.id;
+       messageBoard.add(s);
+       toAttend = false;
+    }*/
     //exclamation point appears
     //if waiter is 100 away from customer
     //first order
