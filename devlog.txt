@@ -122,3 +122,4 @@ Nikita :: cleaned code and went over Devlog/ReadMe
 2017-6-6
 ----------------------------------------------------------
 Joelle :: fixed bug with winning screen returning to game play because of customers leaving angrily in the background
+Nikita :: Syncronized up customer color changing (happy to angry) with them requesting something and not the moment they sit down
