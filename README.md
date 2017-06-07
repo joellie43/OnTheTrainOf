@@ -8,6 +8,7 @@ The objective of the game is to make $50 before time runs out (100 seconds). Dif
 ### Key:
 * Waiter (user) : person
 * Customer : triangles
+* Signal that customer needs waiter : exclamation point that appears 5 seconds after each interaction with user
 * Food : concentric circles with centers of different colors according to different foods
 * Tables : squares of different colors
 * Timer for each customer : 15 seconds, customer turns gradiates from original color to red (red meaning time has run out and the customer will leave angrily)
@@ -18,7 +19,6 @@ The objective of the game is to make $50 before time runs out (100 seconds). Dif
 ### How to play
 
 1. Click on tables or the left most dish to have the waiter walk to them. 
-
 2. Drag customers (customers appear in groups of four but are treated as one) from the bottom (front) of the line to a table to seat them. The other customers will then step down the line. 
 3. If a customer isn't released over a table then they will go back to the front of the line. 
 4. Starting after they are seated, customers will alert the user with an exclamation mark that they want to be served. This exclamation mark appears 5 seconds after each interaction with the user. 
@@ -26,7 +26,6 @@ The objective of the game is to make $50 before time runs out (100 seconds). Dif
 6. Then bring them their food and wait for them to finish their meal and are ready to pay. 
 7. Click on the customer again to help them pay. After they pay, customers will leave. 
 8. Click on the table to carry the dirty dish to the gray square dishwasher and click once more on the dishwasher to put it in the dishwasher and have it disappear.
-
 9. Collect 50 dollars to win the game before you run out of time (100 seconds).
 
 ### Queues and ArrayLists within this game
