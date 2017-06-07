@@ -6,14 +6,14 @@ Our project is a spinoff of Diner Dash. Users will play as a waiter of a diner, 
 The objective of the game is to make $50 before time runs out (100 seconds). Different food have different values, so the game keeps going until this objective is met.
 
 ### Key:
-1. Waiter (user) : person
-2. Customer : triangles
-3. Food : concentric circles with centers of different colors according to different foods
-4. Tables : squares of different colors
-5. Timer for each customer : 15 seconds, customer turns gradiates from original color to red (red meaning time has run out and the customer will leave angrily)
-6. Timer for entire game: top right corner
-7. Money Tracker: bottom right corner
-8. Dish Washer: gray box near top right corner
+* Waiter (user) : person
+* Customer : triangles
+* Food : concentric circles with centers of different colors according to different foods
+* Tables : squares of different colors
+* Timer for each customer : 15 seconds, customer turns gradiates from original color to red (red meaning time has run out and the customer will leave angrily)
+* Timer for entire game: top right corner
+* Money Tracker: bottom right corner
+* Dish Washer: gray box near top right corner
 
 ### How to play
 
