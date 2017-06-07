@@ -20,12 +20,15 @@ UNRESOLVED
 *Creating a functional undo button for the game
 *If user is holding a dish already while going to help a customer pay, there is a glitch because when the user goes to serve
 that dish, the finished dish from the customer that paid appears at its side (even though the user is not by the table)
+*How to make something occur only once in the draw() method
+*Implementing a stack somewhere in the code
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 COOL STUFF LEARNED
 *How to put multiple shapes together with createShape()
 *learned how to make text appear on screen
 *learned how to utilize millis() and second() for time
+*Just how effective the dist() method is
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 MID-DEVELOPMENT DESIGN CHANGES
@@ -39,7 +42,8 @@ To increase the difficulty of the game...
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 LESSONS LEARNED
-*Dont create too many instance vars
+*Don't create too many instance vars
+*Don't be afraid to interpret and manipulate code that a different group member wrote
 *Processing is like a continuous while loop, so we had to make use of many state variables
 *It is okay to cut out certain features, so that we can make time to accomplish what is managable
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -123,3 +127,4 @@ Nikita :: cleaned code and went over Devlog/ReadMe
 ----------------------------------------------------------
 Joelle :: fixed bug with winning screen returning to game play because of customers leaving angrily in the background
 Nikita :: Syncronized up customer color changing (happy to angry) with them requesting something and not the moment they sit down
+Dimitriy :: added title screen that he is far too proud of and fixed an inconsistency in the sidebar
