@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+String gameMode = "title";
+boolean gameSetUpYet = false;
+
 ArrayList<Table> tables; 
 Waiter flo;
 ArrayList<Food> foods; //collection of ordered foods
@@ -38,6 +41,17 @@ void setup() {
 }
 
 void draw() {
+  if(gameMode.equals("title")){
+     titleScreen(); 
+  }
+  else if(gameMode.equals("instruct")){
+     instruction(); 
+  }
+  else{
+  if(!gameSetUpYet){
+      setup();
+      gameSetUpYet = true;
+  }
   background(245,245,220);
  
   if (!won && !lost){
@@ -266,6 +280,7 @@ void draw() {
   text("You won!",230,320);
   }
  //***************
+  }
 }//end of draw()
 
 //mouseReleased for dropping customer
@@ -303,6 +318,69 @@ void createFood(Food f, Customer r, int i){
     f.recipient = r;
     f.position = i;
     foods.add(f);
+}
+
+void titleScreen(){
+   background(200, 200, 200);
+   textSize(32);
+   fill(255);
+   text("Welcome to FlatLand Diner!", 500, 500);
+
+   rect(200, 550, 150, 30);
+   fill(150, 150, 100);
+   
+   rect(400, 550, 150, 30);
+   fill(255, 200, 0);
+   
+   textSize(15);
+   fill(100);
+   text("Start Game", 235, 575);
+   
+   textSize(15);
+   fill(100);
+   text("Instructions", 435, 575);
+   
+   if(mousePressed && dist(mouseX, mouseY, 275, 565) < 75){
+      gameMode = "play"; 
+   }
+   else if(mousePressed && dist(mouseX, mouseY, 475, 565) < 75){
+      gameMode = "instruct"; 
+   }
+}
+
+void instruction(){
+   background(0, 50, 200);
+   
+   textSize(25);
+   fill(250, 150, 250);
+   text("You are Flo. You are in charge of FlatLand Diner.", 100, 200);
+   text("Start by dragging the customers (triangles) to their tables.", 100, 235);
+   text("Attend to the customers when they request it!", 100, 270);
+   text("Click on the food queue to pick up the customer's request.", 100, 305);
+   text("Empty plates at the dishwasher after customers leave.", 100, 340);
+   text("Look to the sidebar for advice.", 100, 375);
+   text("Enjoy and don't mess up!", 100, 410);
+   
+   rect(600, 550, 150, 30);
+   fill(150, 150, 100);
+   
+   rect(800, 550, 150, 30);
+   fill(255, 200, 0);
+   
+   textSize(15);
+   fill(100);
+   text("Start Game", 635, 575);
+   
+   textSize(15);
+   fill(100);
+   text("Title Screen", 835, 575);
+   
+   if(mousePressed && dist(mouseX, mouseY, 675, 565) < 75){
+      gameMode = "play"; 
+   }
+   else if(mousePressed && dist(mouseX, mouseY, 875, 565) < 75){
+      gameMode = "title"; 
+   }
 }
 
 void pickUp(){
