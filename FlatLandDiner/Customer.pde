@@ -51,12 +51,15 @@ class Customer{
           flo.madeSoFar -= foodOrdered.cost;//flo wasted food so deduct that food's cost from her earnings
         }
       }
-      else{
-        shade = color(255 * timeDif/10000,
-                      greenShift - greenShift * timeDif/10000,
-                      blueShift - blueShift *timeDif/10000);
+      else if(timeDif > 5000){ //after 5 seconds have past and customer begins to get angry
+        shade = color(255 * (timeDif-5000)/10000,
+                      greenShift - greenShift * (timeDif - 5000)/10000,
+                      blueShift - blueShift * (timeDif - 5000)/10000);
       }
-    }
+      else{ //everything is fine/ happy sitting customer
+        shade = color(0,greenShift,blueShift);
+      }
+    }//end of color if for sitting customers
     else if(leaving == 0){ //leaving angry
       shade = color(255,0,0);
     }
