@@ -35,6 +35,8 @@ The customers stand in a queue. The first customer to get in line is the first o
 The food is also produced in a queue like fashion. When a customer orders food prior to someone else, their food is made first and can only be picked up first. The leftmost food is the front of the queue and the other foods shift down, when it is dequeued.
 
 ### Bugs and things to watch out for
+The waiter may occasionally have lines streching out from where it was generated. This is most likely a glitch with the createShape code in Waiter.pde.
+
 If the waiter is at the customer's table but they are still growing more impatient, try going to a different table and coming back. Sometimes it may still be a bit too early for them to order. When they have an exclamation mark hovering over them, they are ready to order, eat, or pay.
 
 If user is holding a dish already while going to help a customer pay, there is a glitch because when the user goes to serve
